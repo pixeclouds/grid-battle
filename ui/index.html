@@ -25,15 +25,24 @@
     font-size: 24px;
     cursor: pointer;
   }
+  .cell :hover {
+    background-color: aqua;
+  }
   .win {
     background: lightgreen;
   }
+  .btn {
+    background: lightyellow;
+    margin-top: 10px;
+    border: 1px solid black;
+    border-radius: 3px;
+  }
 </style>
-<title>Tic-Tac-Toe</title>
+<title>Grid Duel</title>
 </head>
 <body>
-  <h1>Tic-Tac-Toe</h1>
-  <p>Current player: <span id="currentPlayer">X</span></p>
+  <h1>Grid Duel</h1>
+  <p>Player Turn: <span id="currentPlayer">X</span></p>
   <div class="board" id="board">
     <div class="cell one 1" onclick="selectCell(this)">X</div>
     <div class="cell two 2" onclick="selectCell(this)">X</div>
@@ -46,14 +55,14 @@
     <div class="cell nine 9" onclick="selectCell(this)">Y</div>
   </div>
   <p id="winMessage" style="display: none;"></p>
-  <button class="reset" onclick="resetGame(this)">Reset</button>
+  <button class="reset btn" onclick="resetGame(this)">Reset</button>
   <script>
 
     let socket = io()
    
     let selectedCell = null;
     let currentPlayer = 'X';
-    //initila game state
+    //initial game state
     let state = {
       'one':'X', 'two': 'X', 'three': 'X', 
       'four': '', 'five': '', 'six': '',
@@ -154,8 +163,14 @@
       'seven': 'Y', 'eight': 'Y', 'nine': 'Y',
     };
 
-     updateGameState(state)
-     updateCurrentPlayer(currentPlayer)
+    document.querySelectorAll('.cell').forEach(cell => {
+      cell.style.background = ''
+    })
+    document.getElementById('winMessage').style.display = 'none';
+
+    updateGameState(state)
+    updateCurrentPlayer(currentPlayer)
+
     }
 
   </script>

@@ -17,7 +17,6 @@ io.on('connection', (socket) => {
 })
 
 
-http.listen(3000,  () => {
+http.listen(3000,  '192.168.213.168', () => {
     console.log('App is running')
 })
-// '192.168.213.168'
