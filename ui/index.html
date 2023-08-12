@@ -55,7 +55,7 @@
     <div class="cell nine 9" onclick="selectCell(this)">Y</div>
   </div>
   <p id="winMessage" style="display: none;"></p>
-  <button class="reset btn" onclick="resetGame(this)">Reset</button>
+  <button class="reset btn" onclick="resetGameState(this)">Reset</button>
   <script>
 
     let socket = io()
@@ -155,6 +155,12 @@
     }
 
     //reset game to initial state
+    function resetGameState() {
+      socket.emit('reset-game')
+    }
+    socket.on('reset-game', () => {
+      resetGame()
+    })
     function resetGame(){
       currentPlayer = 'X';
       state = {

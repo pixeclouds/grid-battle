@@ -14,6 +14,9 @@ io.on('connection', (socket) => {
     socket.on('move', (data)=> {
         io.sockets.emit('move', data)
     })
+    socket.on('reset-game', () => {
+        io.sockets.emit('reset-game')
+    })
 })
 
 
