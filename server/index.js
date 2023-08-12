@@ -12,7 +12,7 @@ io.on('connection', (socket) => {
     console.log('new user connectd')
 
     socket.on('move', (data)=> {
-        io.sockets.emit('move', data)
+        io.sockets.emit('g-move', data)
     })
     socket.on('reset-game', () => {
         io.sockets.emit('reset-game')
