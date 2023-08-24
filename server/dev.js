@@ -10,7 +10,7 @@ app.use(express.json())
 app.use(userRouter)
 
 // Serve static files (CSS, JS)
-app.use(express.static(path.join(__dirname, '../ui')));
+app.use(express.static(path.join(__dirname, '../ui/home')));
 
 // Serve login.html on the /login route
 app.get('/', (req, res) => {
