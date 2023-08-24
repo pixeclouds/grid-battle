@@ -10,14 +10,12 @@ app.use(express.json())
 app.use(userRouter)
 
 // Serve static files (CSS, JS)
-app.use(express.static(path.join(__dirname, '../ui/login')));
+app.use(express.static(path.join(__dirname, '../ui')));
 
 // Serve login.html on the /login route
-app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, '../ui/login/index.html'));
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../ui/home/index.html'));
 });
-
-
 
 
 const port = 3000;
