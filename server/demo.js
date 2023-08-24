@@ -1,12 +1,13 @@
+require("dotenv").config()
 const express = require('express');
 const path = require('path');
 const app = express();
 const {pool} = require('./config/db')
-const port = 3000;
-
+const userRouter = require('./modules/user/router')
 pool.connect()
 
 app.use(express.json())
+app.use(userRouter)
 
 // Serve static files (CSS, JS)
 app.use(express.static(path.join(__dirname, '../ui/login')));
@@ -18,17 +19,8 @@ app.get('/login', (req, res) => {
 
 
 
-// Handle login request
-app.post('/api/login', (req, res) => {
-    let {username, password } = req.body
 
-    res.json({
-        cookie: 'jhkhdjkgfhbfhgkbk'
-    })
-   
-  // Your authentication logic here
-});
-
+const port = 3000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

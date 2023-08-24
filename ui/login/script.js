@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const password = document.querySelector('#password').value;
   
       // Perform AJAX request to send login/signup data to backend
-      const response = await fetch('/api/login', {
+      const response = await fetch('/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   
       const data = await response.json();
-      localStorage.setItem('user', data.cookie)
+      localStorage.setItem('user', data.token)
       console.log(data); // Handle the response from the backend
     });
   });
