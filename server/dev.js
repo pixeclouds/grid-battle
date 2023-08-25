@@ -4,17 +4,26 @@ const path = require('path');
 const app = express();
 const {pool} = require('./config/db')
 const userRouter = require('./modules/user/router')
-// pool.connect()
+pool.connect()
 
 app.use(express.json())
 app.use(userRouter)
 
 // Serve static files (CSS, JS)
 app.use(express.static(path.join(__dirname, '../ui/home')));
+app.use(express.static(path.join(__dirname, '../ui/invites')));
+app.use(express.static(path.join(__dirname, '../ui/leaderboard')));
 
-// Serve login.html on the /login route
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../ui/home/index.html'));
+});
+
+app.get('/invites', (req, res) => {
+  res.sendFile(path.join(__dirname, '../ui/invites/index.html'));
+});
+
+app.get('/leaderboard', (req, res) => {
+  res.sendFile(path.join(__dirname, '../ui/leaderboard/index.html'));
 });
 
 
