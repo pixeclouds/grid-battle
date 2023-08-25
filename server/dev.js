@@ -4,7 +4,7 @@ const path = require('path');
 const app = express();
 const {pool} = require('./config/db')
 const userRouter = require('./modules/user/router')
-pool.connect()
+// pool.connect()
 
 app.use(express.json())
 app.use(userRouter)
