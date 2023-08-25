@@ -11,11 +11,16 @@ app.use(userRouter)
 
 // Serve static files (CSS, JS)
 app.use(express.static(path.join(__dirname, '../ui/home')));
+app.use(express.static(path.join(__dirname, '../ui/login')));
 app.use(express.static(path.join(__dirname, '../ui/invites')));
 app.use(express.static(path.join(__dirname, '../ui/leaderboard')));
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../ui/home/index.html'));
+});
+
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, '../ui/login/index.html'));
 });
 
 app.get('/invites', (req, res) => {
