@@ -7,7 +7,8 @@ const userRouter = require('./modules/user/router')
 // pool.connect()
 
 app.use(express.json())
-app.use(userRouter)
+
+app.use('/api',userRouter)
 
 // Serve static files (CSS, JS)
 app.use(express.static(path.join(__dirname, '../ui/home')));

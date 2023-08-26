@@ -13,10 +13,9 @@ const getPlayer = async (req, res) => {
 
         // generate token
         let token = await  Token.generateToken({ user: user[0].username})
-        res.json({ token: token})
+        res.status(200).json({ token: token})
     } catch (err) {
-        console.log(err)
-        res.json({ err: err.message})
+        res.status(401).json({ err: err.message})
     }
 }
 
@@ -26,7 +25,7 @@ const createPlayer = async (req, res) => {
         // check if player exists
         let user = await Repo.getPlayer(username)
         if (user.length > 0) {
-            throw Error('PLayer already exists')
+            throw Error('pLayer already exists')
         }
 
         // save new player to db
@@ -34,10 +33,9 @@ const createPlayer = async (req, res) => {
         
         // generate token
         let token = await  Token.generateToken({ user: username})
-        res.json({ token: token})
+        res.status(200).json({ token: token})
     } catch (err) {
-        console.log(err)
-        res.json({ err: err.message})
+        res.status(401).json({ err: err.message})
     }
 }
 

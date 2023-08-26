@@ -29,25 +29,25 @@
            </p>
 
         <div class="login-signup-form">
-            <div class="form-container" id="login-form">
+            <form class="form-container" id="login-form">
                 <h2 class="form-title">Login</h2>
-                <input class="form-input" type="text" placeholder="Username">
-                <input class="form-input" type="password" placeholder="Password">
+                <input class="form-input" type="text" name="username" placeholder="Username">
+                <input class="form-input" type="password" name="password" placeholder="Password">
                 
                 <div class="error-message">Username already taken.</div> 
-                <button class="form-button" type="submit">Submit</button>
+                <button class="form-button login-btn" type="submit">Submit</button>
                 <p class="switch-view sign-up" onclick="switchForm('signup-form')"> Don't have an account? Sign Up instead</p>
-            </div>
-            <div class="form-container" id="signup-form" style="display: none;">
+            </form>
+            <form class="form-container" id="signup-form" style="display: none;">
                 <h2 class="form-title">Sign Up</h2>
-                <input class="form-input" type="text" placeholder="Username">
-                <input class="form-input" type="password" placeholder="Password">
+                <input class="form-input" type="text" name="username" placeholder="Username">
+                <input class="form-input" type="password" name="password" placeholder="Password">
                 
                 <div class="error-message">Username already taken. Please choose a different username.</div>
            
                 <button class="form-button" type="submit">Submit</button>
                 <p class="switch-view" onclick="switchForm('login-form')">Back to Login</p>
-            </div>
+            </form>
         </div>
     </div>
 
