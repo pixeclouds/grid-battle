@@ -7,6 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles-i.css">
+    <script src="/socket.io/socket.io.js"></script>
+
 
 </head>
 <body>
@@ -30,11 +32,11 @@
         
         <div class="invite-container">
         				
-        			<div class="no-invites-message-box"> 
+        	<div class="no-invites-message-box"> 
                <p class="no-invites-message">No open invites available at the moment. You can create one and ask a friend to join.</p>
            </div>	
         				
-            <div class="invite-box">
+            <!-- <div class="invite-box">
                 <div class="invite-creator">Player 1</div>
                 <button class="join-btn">Join</button>
             </div>
@@ -49,16 +51,17 @@
             <div class="invite-box">
                 <div class="invite-creator">Player 4</div>
                 <button class="join-btn">Join</button>
-            </div>
-            <!-- Add more invite boxes here -->
+            </div> -->
         </div>
     </div>
 
     <footer>
         &copy; 2023 Grid Duel Game
     </footer>
-
+    <script src="socket.js"></script>
     <script src="script-i.js"></script>
+ 
+    <!-- <script src="script-i.js"></script> -->
 
 
 </body>

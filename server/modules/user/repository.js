@@ -10,9 +10,9 @@ const getPlayer = async (username) => {
     }
 }
 
-const createPlayer = async (username, password) => {
+const createPlayer = async (id, username, password) => {
     try {
-        await pool.query(queries.createPlayer, [username, password])
+        await pool.query(queries.createPlayer, [id, username, password])
         return 
     } catch (err) {
         throw err

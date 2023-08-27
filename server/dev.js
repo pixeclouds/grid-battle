@@ -2,8 +2,16 @@ require("dotenv").config()
 const express = require('express');
 const path = require('path');
 const app = express();
-const {pool} = require('./config/db')
+
+const http = require('http').Server(app)
+const io = require('socket.io')(http)
+
+const { pool } = require('./config/db')
 const userRouter = require('./modules/user/router')
+
+const inviteNameSpace = require('./modules/invites/socket')
+const gameRoomSpace = require('./nsp')
+
 // pool.connect()
 
 app.use(express.json())
@@ -36,4 +44,6 @@ app.get('/leaderboard', (req, res) => {
 const port = 3000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
+  inviteNameSpace(io)
+  gameRoomSpace(io)
 });

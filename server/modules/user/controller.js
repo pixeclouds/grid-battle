@@ -1,5 +1,6 @@
 const Repo = require('./repository')
 const Token = require('../../utils/token')
+const { v4 } = require('uuid')
 
 const getPlayer = async (req, res) => {
     try {
@@ -12,7 +13,8 @@ const getPlayer = async (req, res) => {
         }
 
         // generate token
-        let token = await  Token.generateToken({ user: user[0].username})
+        let tokenData = { playerId: user[0].id, username: user[0].username}
+        let token = await  Token.generateToken(tokenData)
         res.status(200).json({ token: token})
     } catch (err) {
         res.status(401).json({ err: err.message})
@@ -25,14 +27,17 @@ const createPlayer = async (req, res) => {
         // check if player exists
         let user = await Repo.getPlayer(username)
         if (user.length > 0) {
-            throw Error('pLayer already exists')
+            throw Error('player already exists')
         }
 
+        let id = v4()
         // save new player to db
-        await Repo.createPlayer(username, password)
-        
+        await Repo.createPlayer(id, username, password)
+        user = await Repo.getPlayer(username)
+
         // generate token
-        let token = await  Token.generateToken({ user: username})
+        let tokenData = { playerId: user[0].id, username: user[0].username}
+        let token = await  Token.generateToken(tokenData)
         res.status(200).json({ token: token})
     } catch (err) {
         res.status(401).json({ err: err.message})
