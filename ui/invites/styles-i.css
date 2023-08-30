@@ -23,23 +23,39 @@ header {
 }
 
 .menu-toggle {
-    display: none;
-    cursor: pointer;
-    padding: 0.1rem;
-    font-size: 1.8rem;
-    font-family: 'Roboto Condensed', sans-serif;
+    display: block;
 }
 
 nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 3.5rem;
+    right: 0;
+    width: 40%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+nav.active {
     display: flex;
-    gap: .1rem;
-    align-items: center;
-    font-family: 'Roboto Condensed', sans-serif;
 }
 
 nav a {
+    padding: 1rem;
+    text-align: center;
+    width: 100%;
+    display: block;
     color: white;
     text-decoration: none;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: black;
+    color: white;
+    font-family: 'Roboto Condensed', sans-serif;
 }
 
 .container {
@@ -52,44 +68,7 @@ nav a {
     font-family: 'Open Sans', sans-serif;
 }
 
-footer {
-    text-align: center;
-    padding: 1rem;
-    background-color: black;
-    color: white;
-    font-family: 'Roboto Condensed', sans-serif;
-}
 
-/* Media Query for Hamburger Menu */
-@media screen and (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
-
-    nav {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 3.5rem;
-        right: 0;
-        width: 40%;
-        background-color: rgba(0, 0, 0, 0.7);
-        z-index: 1;
-    }
-
-    nav.active {
-        display: flex;
-    }
-
-    nav a {
-        padding: 1rem;
-        text-align: center;
-        width: 100%;
-        display: block;
-    }
-}
-
-/* Custom Styles */
 .page-description {
     font-size: 1.2rem;
     margin-bottom: 1.5rem;
@@ -111,20 +90,6 @@ footer {
     text-align: center;
     display: block;
 }
-
-/*.create-invite-btn {
-    display: block;
-    text-align: center;
-    margin: 2rem auto;
-    background-color: black;
-    color: white;
-    padding: 1rem 2rem;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.3s, color 0.3s;
-    font-family: 'Roboto Condensed', sans-serif;
-}*/
 
 .create-invite-btn:hover {
     background-color: grey;
@@ -190,5 +155,86 @@ footer {
     font-size: 1.5rem;
     color: #666666;
  }
+
+
+ /* styles for the the invite creation modal */
+
+ .container-modal {
+    max-width: 800px;
+    display: none;
+    margin: 0rem;
+    padding: 50% 1rem;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.create-invite-section {
+    position: relative; 
+    padding: 2rem;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.cancel-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.1rem .4rem;
+    font-size: 1.3rem;
+    cursor: pointer;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+   
+}
+.cancel-button :hover {
+    background: black;
+    color: white;
+}
+
+.invite-button {
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 0.4rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+}
+.invite-button :hover {
+    background-color: #333;
+}
+
+.invite-button.public {
+    background-color: #007bff;
+}
+
+.invite-button.private {
+    background-color: #ffbd07; 
+    
+}
+
+.private-invite-input {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.private-invite-input input {
+    padding: 0.4rem;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 0.1rem;
+    font-size: 1rem;
+    width: 95%;
+    max-width: 250px;
+}
+
 
 

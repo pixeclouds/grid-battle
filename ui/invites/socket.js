@@ -9,7 +9,11 @@ socket.on('invite-created', data => {
     socket.emit('get-invites')
 })
 socket.on('invites-list', invites => {
+    console.log(invites)
     updateInviteUI(invites)
 })
 
+function createInvite(invite) {
+    socket.emit('create-invite', invite)
+}
   

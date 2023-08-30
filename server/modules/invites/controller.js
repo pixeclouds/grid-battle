@@ -9,8 +9,8 @@ const createInvite = async (token) => {
 
         // check if player has an open invite
         let openInvite = await Repo.getInvite(playerId)
-        if (openInvite.length > 2) {
-            throw Error ('you can only create 3 open invites at a time')
+        if (openInvite.length > 0) {
+            throw Error ('you can only create 1 open invite at a time')
         }
         let id = v4() 
         let gameroom = v4() // a random identifier for a game room
@@ -30,6 +30,7 @@ const getInvites = async () => {
         return err.message
     }
 }
+
 
 module.exports = {
     createInvite,

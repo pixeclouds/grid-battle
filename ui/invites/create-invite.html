@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags and fonts -->
+
+    <style>
+        /* Header and Footer Styles (Retained from Landing Page) */
+        /* ... (header and footer styles) ... */
+
+        /* Additional Styles for Create Invite Page */
+        .container-modal {
+            max-width: 800px;
+            display: block;
+            margin: 0rem;
+            padding: 50% 1rem;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .create-invite-section {
+            position: relative; /* Add relative positioning */
+            padding: 2rem;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .cancel-button {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            padding: 0.1rem .4rem;
+            font-size: 1.3rem;
+            cursor: pointer;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+           
+        }
+
+        .invite-button {
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            padding: 0.4rem 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .invite-button.public {
+            background-color: #007bff; /* Blue color for public invite */
+        }
+
+        .invite-button.private {
+            background-color: #ffc107; /* Yellow color for private invite */
+            
+        }
+
+        .private-invite-input {
+            margin-top: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .private-invite-input input {
+            padding: 0.4rem;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            margin-bottom: 0.1rem;
+            font-size: 1rem;
+            width: 95%;
+            max-width: 250px;
+        }
+
+        /* Media Query for Hamburger Menu */
+        /* ... (hamburger menu styles) ... */
+    </style>
+</head>
+<body>
+    <header>
+        <!-- ... (header content) ... -->
+    </header>
+
+    <div class="container-modal">
+        <div class="create-invite-section">
+            <span class="cancel-button">&#10006;</span> <!-- Cancel symbol -->
+            <h2>Create Invite</h2>
+            
+            <!-- Public Invite -->
+            <button class="invite-button public create-public-invite">Create Public Invite</button>
+            
+            <!-- Private Invite -->
+            <div class="private-invite-input">
+                <input type="text" class ="private-invite-username" placeholder="Enter Player Username">
+                <button class="invite-button private create-private-invite">Send Private Invite</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <!-- ... (footer content) ... -->
+    </footer>
+
+    <script>
+        /* Hamburger Menu Script (Retained from Landing Page) */
+        /* ... (menu toggle script) ... */
+    </script>
+</body>
+</html>

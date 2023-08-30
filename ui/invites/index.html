@@ -55,11 +55,30 @@
         </div>
     </div>
 
+    <!-- Invite Creation Modal -->
+    <div class="container-modal">
+        <div class="create-invite-section">
+            <span class="cancel-button">&#10006;</span> <!-- Cancel symbol -->
+            <h2>Create Invite</h2>
+            
+            <!-- Public Invite -->
+            <button class="invite-button public create-public-invite">Create Public Invite</button>
+            
+            <!-- Private Invite -->
+            <div class="private-invite-input">
+                <input type="text" class="recipient" placeholder="Enter Player Username">
+                <button class="invite-button private create-private-invite">Send Private Invite</button>
+            </div>
+        </div>
+    </div>
+
     <footer>
         &copy; 2023 Grid Duel Game
     </footer>
-    <script src="socket.js"></script>
     <script src="script-i.js"></script>
+
+    <script src="socket.js"></script>
+    <!-- <script src="script-i.js"></script> -->
  
     <!-- <script src="script-i.js"></script> -->
 

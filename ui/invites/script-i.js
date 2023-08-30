@@ -4,13 +4,13 @@ document.querySelector('.menu-toggle').addEventListener('click', () => {
     document.querySelector('nav').classList.toggle('active');
 });
 
-document.querySelector('.create-invite-btn').addEventListener('click', (e) => {
-    e.preventDefault()
+// document.querySelector('.create-invite-btn').addEventListener('click', (e) => {
+//     e.preventDefault()
 
-    let token = localStorage.getItem('token')
-    socket.emit('create-invite', token)
+//     let token = localStorage.getItem('token')
+//     socket.emit('create-invite', token)
 
-})
+// })
 
 const updateInviteUI = (invites) => {     
 
@@ -42,3 +42,51 @@ const updateInviteUI = (invites) => {
     }
 
 }
+
+document.querySelector('.invite-container').addEventListener('click', e => {
+    if (e.target.classList.contains('join-btn')) {
+
+        let token = localStorage.getItem('token')
+        let inviteCode = e.target.classList[1]
+        socket.emit('join-game', (inviteCode, token))
+
+    }
+})
+
+// switch to create invite modal
+document.querySelector('.create-invite-btn').addEventListener('click', (e) => {
+    e.preventDefault()
+    document.querySelector('.container-modal').style.display = 'block'
+    document.querySelector('.container').style.display = 'none'
+})
+// switch back to invite list
+document.querySelector('.cancel-button').addEventListener('click', (e) => {
+    e.preventDefault()
+    document.querySelector('.container-modal').style.display = 'none'
+    document.querySelector('.container').style.display = 'block'
+})
+
+// handle public invite creation 
+document.querySelector('.create-public-invite').addEventListener('click', (e) => {
+    e.preventDefault()
+    let token = localStorage.getItem('token')
+    let invite = {
+        token, 
+        type: 'public'
+    }
+    createInvite(invite)
+    
+})
+// handle private invite creation 
+document.querySelector('.create-private-invite').addEventListener('click', (e) => {
+    e.preventDefault()
+    let token = localStorage.getItem('token')
+    let recipient = document.querySelector('.recipient').value
+    let invite = {
+        token, 
+        recipient,
+        type: 'private'
+    }
+    createInvite(invite)
+    
+})

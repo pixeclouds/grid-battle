@@ -8,9 +8,10 @@ const inviteNameSpace =  (io) => {
         console.log('user connected to invite nsp')
 
         // create a new invite event
-        socket.on('create-invite', async (token) => {
-            let resp = await inviteController.createInvite(token)
-            socket.emit('invite-created', resp)
+        socket.on('create-invite', async (invite) => {
+            // let resp = await inviteController.createInvite(token)
+            console.log(invite)
+            socket.emit('invite-created', 'created')
         })
 
         // retrieve all active invites event

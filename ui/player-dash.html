@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags and fonts -->
+
+    <style>
+        /* Header and Footer Styles (Retained from Landing Page) */
+        /* ... (header and footer styles) ... */
+
+        /* Additional Styles for Player Dashboard Page */
+        .container {
+            max-width: 800px;
+            margin: 0rem auto;
+            padding: 1.5rem;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .highlight-section {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .highlight-title {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-info {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .notifications-section {
+            padding: 1rem;
+            max-width: 100%;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .notification-box {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 0.1rem 1rem 0.5rem 1rem;
+            margin-bottom: 1rem;
+            margin-left: 0px;
+        }
+
+        .notification-text {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.1rem;
+            display: flex;
+            margin-top: .5rem;
+            margin-bottom: .5rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .notification-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .notification-button {
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            padding: 0.3rem 0.8rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .notification-button.accept {
+            background-color: #5ead5e; /* Slightly muted green color */
+}
+
+        .notification-button.decline {
+            background-color: #d44d4d; /* Slightly muted red color */
+}
+
+
+
+        
+        /* Styles for No Invites or Notifications Message Boxes */
+        .no-invites-message-box {
+            padding: 2rem 1rem;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .no-invites-message {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.5rem;
+            color: #666;
+        }
+        
+        /* Colors for Different Notification Boxes */
+        .private-recieved {
+            background-color: #dbe9f5;
+        }
+
+        .private-sent {
+            background-color: #e0f3e0;
+        }
+
+        .public-created {
+            background-color: #f7e8e0;
+        }   
+				 
+        /* Media Query for Hamburger Menu */
+        /* ... (hamburger menu styles) ... */
+    </style>
+</head>
+<body>
+    <header>
+        <!-- ... (header content) ... -->
+    </header>
+
+    <div class="container">
+        <div class="highlight-section">
+            <h2 class="highlight-title">Player Highlight</h2>
+            <p class="highlight-info">Your Ranking: #25</p>
+            <p class="highlight-info">Total Score: 1200</p>
+        </div>
+
+        <div class="notifications-section">
+            <h2 class="highlight-title">Notifications</h2>
+             <div class="no-invites-message-box">
+                <p class="no-invites-message">No new notifications at the moment.</p>
+            </div>
+                <div class="notification-box private-recieved">
+                <p class="notification-text">Private Invite from ABC</p>
+                <div class="notification-actions">
+                    <button class="notification-button accept">Accept</button>
+                    <button class="notification-button decline">Decline</button>
+                </div>
+            </div>
+            <div class="notification-box private-recieved ">
+                <p class="notification-text">Private Invite from XYZ</p>
+                <div class="notification-actions">
+                    <button class="notification-button accept">Accept</button>
+                    <button class="notification-button decline">Decline</button>
+                </div>
+            </div>  
+             <div class="notification-box private-sent">
+                <p class="notification-text">You sent a Private Invite to XYZ</p>
+                <div class="notification-actions">
+           
+                    <button class="notification-button decline">Cancel</button>
+                </div>
+            </div> 
+            
+             <div class="notification-box public-created">
+                <p class="notification-text">You created a public Invite</p>
+                <div class="notification-actions">
+                    
+                    <button class="notification-button decline">Delete</button>
+                </div>
+            </div> 
+            <!-- Add more notification boxes here -->
+        </div>
+    </div>
+
+    <footer>
+        <!-- ... (footer content) ... -->
+    </footer>
+
+    <script>
+        /* Hamburger Menu Script (Retained from Landing Page) */
+        /* ... (menu toggle script) ... */
+    </script>
+</body>
+</html>
