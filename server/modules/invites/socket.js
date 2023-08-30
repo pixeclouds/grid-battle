@@ -13,11 +13,11 @@ const inviteNameSpace =  (io) => {
             socket.emit('invite-created', resp)
         })
 
-        // create a new invite event
-        // socket.on('create-private-invite', async (invite) => {
-        //     let resp = await inviteController.createPrivateInvite(token)
-        //     socket.emit('invite-created', 'created')
-        // })
+        // create a new private invite event
+        socket.on('create-private-invite', async (invite) => {
+            let resp = await inviteController.createPrivateInvite(invite)
+            socket.emit('invite-created', resp)
+        })
 
         // retrieve all active invites event
         socket.on('get-invites', async ()=> {

@@ -10,6 +10,23 @@ const createInvite = async (id, playerId, gameroom) => {
     }
 }
 
+const createPrivateInvite = async (id, sender, receiver, gameroom) => {
+    try {
+        await pool.query(queries.createPrivateInvite, [id, sender, receiver, gameroom])
+        return
+    } catch (err) {
+        throw err
+    }
+}
+const getPrivateInvite = async (sender, receiver) => {
+    try {
+        let invite = await pool.query(queries.getPrivateInvite, [sender, receiver])
+        return invite.rows
+    } catch (err) {
+        throw err
+    }
+}
+
 const getInvites = async () => {
     try {
         let invites = await pool.query(queries.getInvites)
@@ -39,6 +56,8 @@ const deleteInvite = async (id) => {
 module.exports = {
     getInvite,
     getInvites,
+    getPrivateInvite,
     createInvite,
+    createPrivateInvite,
     deleteInvite,
 }

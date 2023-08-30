@@ -82,10 +82,10 @@ document.querySelector('.create-public-invite').addEventListener('click', (e) =>
 document.querySelector('.create-private-invite').addEventListener('click', (e) => {
     e.preventDefault()
     let token = localStorage.getItem('token')
-    let recipient = document.querySelector('.recipient').value
+    let receiver = document.querySelector('.recipient').value
     let invite = {
         token, 
-        recipient,
+        receiver,
         type: 'private'
     }
     createPrivateInvite(invite)
