@@ -190,10 +190,6 @@ footer {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
    
 }
-.cancel-button :hover {
-    background: black;
-    color: white;
-}
 
 .invite-button {
     background-color: black;
@@ -205,9 +201,6 @@ footer {
     transition: background-color 0.3s;
     margin-top: 1rem;
     font-size: 1.1rem;
-}
-.invite-button :hover {
-    background-color: #333;
 }
 
 .invite-button.public {

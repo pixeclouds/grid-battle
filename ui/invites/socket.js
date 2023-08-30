@@ -9,11 +9,14 @@ socket.on('invite-created', data => {
     socket.emit('get-invites')
 })
 socket.on('invites-list', invites => {
-    console.log(invites)
     updateInviteUI(invites)
 })
 
-function createInvite(invite) {
-    socket.emit('create-invite', invite)
+function createPublicInvite(invite) {
+    console.log('sokcte',invite)
+    socket.emit('create-public-invite', invite)
 }
-  
+
+function createPrivateInvite(invite) {
+    socket.emit('create-private-invite', invite)
+}

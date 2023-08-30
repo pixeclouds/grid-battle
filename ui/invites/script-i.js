@@ -74,7 +74,8 @@ document.querySelector('.create-public-invite').addEventListener('click', (e) =>
         token, 
         type: 'public'
     }
-    createInvite(invite)
+    // console.log(invite)
+    createPublicInvite(invite)
     
 })
 // handle private invite creation 
@@ -87,6 +88,6 @@ document.querySelector('.create-private-invite').addEventListener('click', (e) =
         recipient,
         type: 'private'
     }
-    createInvite(invite)
+    createPrivateInvite(invite)
     
 })

@@ -3,9 +3,9 @@ const Token = require('../../utils/token')
 const { v4 } = require('uuid')
 
 
-const createInvite = async (token) => {
+const createPublicInvite = async (invite) => {
     try {
-        let { playerId } = await Token.verifyToken(token)
+        let { playerId } = await Token.verifyToken(invite.token)
 
         // check if player has an open invite
         let openInvite = await Repo.getInvite(playerId)
@@ -33,6 +33,6 @@ const getInvites = async () => {
 
 
 module.exports = {
-    createInvite,
+    createPublicInvite,
     getInvites,
 }
