@@ -1,5 +1,5 @@
 const createInvite = 'INSERT INTO invites (id, player_id, gameroom) VALUES($1, $2, $3)'
-const getInvites = 'SELECT p.username, i.player_id, i.gameroom FROM invites i LEFT JOIN players p on p.id = i.player_id'
+const getInvites = 'SELECT p.username, i.player_id, i.gameroom FROM invites i LEFT JOIN players p on p.id = i.player_id WHERE NOT player_id = $1'
 const getInvite = 'SELECT i.id, p.username, i.player_id, i.gameroom FROM invites i LEFT JOIN players p on p.id = i.player_id WHERE i.player_id = $1'
 const deleteInvite = 'DELETE FROM invites WHERE gameroom = $1'
 

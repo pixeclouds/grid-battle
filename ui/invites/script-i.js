@@ -13,6 +13,7 @@ document.querySelector('.menu-toggle').addEventListener('click', () => {
 // })
 
 const updateInviteUI = (invites) => {     
+    console.log('invite rom server', invites)
 
     // check if there are any open invites
     if (invites.length < 1){

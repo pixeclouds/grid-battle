@@ -20,16 +20,16 @@ const inviteNameSpace =  (io) => {
         })
 
         // retrieve all active invites event
-        socket.on('get-invites', async ()=> {
-            let invites = await inviteController.getInvites()
+        socket.on('get-invites', async (token)=> {
+            let invites = await inviteController.getInvites(token)
             socket.emit('invites-list', invites)
         })
 
         // delete invite that was just joined by a player
-        socket.on('delete-invite', async ( gameroom) => {
+        socket.on('delete-invite', async (gameroom, token) => {
             let deleted =  await inviteController.deleteInvite(gameroom)
             if (deleted) {
-                let invites = await inviteController.getInvites()
+                let invites = await inviteController.getInvites(token)
                 socket.emit('invites-list', invites)
             }
         })

@@ -1,7 +1,8 @@
 let socket = io('/invites')
 
 socket.on('connect', () => {
-    socket.emit('get-invites')
+    let token = localStorage.getItem('token')
+    socket.emit('get-invites', token)
 })
 
 socket.on('invite-created', data => {

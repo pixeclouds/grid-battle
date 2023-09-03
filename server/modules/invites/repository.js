@@ -27,9 +27,9 @@ const getPrivateInvite = async (sender, receiver) => {
     }
 }
 
-const getInvites = async () => {
+const getInvites = async (playerId) => {
     try {
-        let invites = await pool.query(queries.getInvites)
+        let invites = await pool.query(queries.getInvites, [playerId])
         return invites.rows
     } catch (err) {
         throw err

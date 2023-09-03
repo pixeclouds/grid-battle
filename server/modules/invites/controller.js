@@ -55,9 +55,10 @@ const createPrivateInvite = async (invite) => {
 }
 
 
-const getInvites = async () => {
+const getInvites = async (token) => {
     try {
-        let invites = await Repo.getInvites()
+        let { playerId } = await Token.verifyToken(token)
+        let invites = await Repo.getInvites(playerId)
         return invites
     } catch (err) {
         return err.message
