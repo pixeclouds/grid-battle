@@ -13,10 +13,12 @@ socket.on('invites-list', invites => {
 })
 
 function createPublicInvite(invite) {
-    console.log('sokcte',invite)
     socket.emit('create-public-invite', invite)
 }
 
 function createPrivateInvite(invite) {
     socket.emit('create-private-invite', invite)
 }
+
+
+

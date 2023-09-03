@@ -36,6 +36,7 @@ const userRouter = require('./modules/login/router')
 
 const inviteNameSpace = require('./modules/invites/socket')
 const gameRoomNameSpace = require('./modules/game-room/socket')
+const dashboardNameSpace = require('./modules/dashboard/socket')
 
 // const gameRoomSpace = require('./nsp')
 
@@ -48,6 +49,7 @@ app.use('/api',userRouter)
 // Serve static files (CSS, JS)
 app.use(express.static(path.join(__dirname, '../ui/home')));
 app.use(express.static(path.join(__dirname, '../ui/login')));
+app.use(express.static(path.join(__dirname, '../ui/dashboard')));
 app.use(express.static(path.join(__dirname, '../ui/invites')));
 app.use(express.static(path.join(__dirname, '../ui/game-room')));
 app.use(express.static(path.join(__dirname, '../ui/leaderboard')));
@@ -58,6 +60,10 @@ app.get('/', (req, res) => {
 
 app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, '../ui/login/index.html'));
+});
+
+app.get('/dashboard', (req, res) => {
+  res.sendFile(path.join(__dirname, '../ui/dashboard/index.html'));
 });
 
 app.get('/invites', (req, res) => {
@@ -72,6 +78,12 @@ app.get('/gameroom', (req, res) => {
   res.sendFile(path.join(__dirname, '../ui/game-room/demo4.html'));
 });
 
+app.get('/dashboard', (req, res) => {
+  res.sendFile(path.join(__dirname, '../ui/dashboard/index.html'));
+});
+
+
+
 
 
 
@@ -80,6 +92,7 @@ http.listen(port, () => {
   console.log(`Server is running on port ${port}`);
   inviteNameSpace(io)
   gameRoomNameSpace(io)
+  dashboardNameSpace(io)
 });
 
 

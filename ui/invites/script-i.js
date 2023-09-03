@@ -83,11 +83,15 @@ document.querySelector('.create-private-invite').addEventListener('click', (e) =
     e.preventDefault()
     let token = localStorage.getItem('token')
     let receiver = document.querySelector('.recipient').value
-    let invite = {
-        token, 
-        receiver,
-        type: 'private'
+    if (receiver == '') {
+        window.alert('username cannot be empty')
+    } else {
+        let invite = {
+            token, 
+            receiver,
+            type: 'private'
+        }
+        createPrivateInvite(invite)
     }
-    createPrivateInvite(invite)
     
 })

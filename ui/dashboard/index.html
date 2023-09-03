@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invites - Grid Duel Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles-d.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- Meta tags and fonts -->
+
+   
+</head>
+<body>
+    <header>
+        <a class="logo" href="/">Grid Duel</a>
+        <div class="menu-toggle">&#9776;</div>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/login">Login</a>
+            <a href="/invites">Invite</a>
+            <a href="https://grid-duel.onrender.com/">Play Game</a>
+            <a href="#">Tournament</a>
+            <a href="/leaderboard">Leaderboard</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="highlight-section">
+            <h2 class="highlight-title">Player Highlight</h2>
+            <p class="highlight-info">Your Ranking: #25</p>
+            <p class="highlight-info">Total Score: 1200</p>
+        </div>
+
+        <div class="notifications-section">
+            <h2 class="highlight-title">Notifications</h2>
+             <div class="no-invites-message-box">
+                <p class="no-invites-message">No new notifications at the moment.</p>
+            </div>
+            <!-- <div class="notification-box private-received">
+            <p class="notification-text">Private Invite from ABC</p>
+            <div class="notification-actions">
+                <button class="notification-button accept">Accept</button>
+                <button class="notification-button decline">Decline</button>
+            </div>
+            </div>
+            <div class="notification-box private-received ">
+                <p class="notification-text">Private Invite from XYZ</p>
+                <div class="notification-actions">
+                    <button class="notification-button accept">Accept</button>
+                    <button class="notification-button decline">Decline</button>
+                </div>
+            </div>  
+             <div class="notification-box private-sent">
+                <p class="notification-text">Sent a Private Invite to XYZ</p>
+                <div class="notification-actions">
+           
+                    <button class="notification-button decline">Cancel</button>
+                </div>
+            </div> 
+            
+             <div class="notification-box public-created">
+                <p class="notification-text">You created a public Invite</p>
+                <div class="notification-actions">
+                    
+                    <button class="notification-button decline">Delete</button>
+                </div>
+            </div>   -->
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2023 Grid Duel Game
+    </footer>
+    <script src="script-d.js"></script>
+
+    <script src="socket-d.js"></script>
+</body>
+</html>

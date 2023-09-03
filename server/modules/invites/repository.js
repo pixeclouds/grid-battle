@@ -45,6 +45,23 @@ const getInvite = async (player_id) => {
     }
 } 
 
+const getSentPrivateInvite = async (sender) => {
+    try {
+        let invites = await pool.query(queries.getSentPrivateInvite, [sender])
+        return invites.rows
+    } catch (err) {
+        throw err
+    }
+}
+
+const getReceivedPrivateInvite = async (reciever) => {
+    try {
+        let invites = await pool.query(queries.getReceivedPrivateInvite, [reciever])
+        return invites.rows
+    } catch (err) {
+        throw err
+    }
+}
 const deleteInvite = async (id) => {
     try {
         return await pool.query(queries.deleteInvite, [id])
@@ -60,4 +77,6 @@ module.exports = {
     createInvite,
     createPrivateInvite,
     deleteInvite,
+    getSentPrivateInvite,
+    getReceivedPrivateInvite,
 }
