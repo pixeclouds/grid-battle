@@ -64,9 +64,20 @@ const getInvites = async () => {
     }
 }
 
+const deleteInvite = async (gameroom) => {
+    try {
+        await Repo.deleteInvite(gameroom)
+        return true
+    } catch (err) {
+        return false
+        
+    }
+}
+
 
 module.exports = {
     createPublicInvite,
     createPrivateInvite,
     getInvites,
+    deleteInvite,
 }

@@ -20,5 +20,9 @@ function createPrivateInvite(invite) {
     socket.emit('create-private-invite', invite)
 }
 
+function deleteInvite (gameroom) {
+    socket.emit('delete-invite', gameroom)
+}
+
 
 

@@ -46,9 +46,12 @@ const updateInviteUI = (invites) => {
 document.querySelector('.invite-container').addEventListener('click', e => {
     if (e.target.classList.contains('join-btn')) {
 
-        let token = localStorage.getItem('token')
-        let inviteCode = e.target.classList[1]
-        socket.emit('join-game', (inviteCode, token))
+        // let token = localStorage.getItem('token')
+        let gameroom = e.target.classList[1]
+        localStorage.setItem('gameroom', gameroom)
+        deleteInvite(gameroom)
+        window.location.href = '/gameroom'
+        // socket.emit('join-game', (gameroom, token))
 
     }
 })

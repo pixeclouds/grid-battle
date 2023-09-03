@@ -24,6 +24,15 @@ const inviteNameSpace =  (io) => {
             let invites = await inviteController.getInvites()
             socket.emit('invites-list', invites)
         })
+
+        // delete invite that was just joined by a player
+        socket.on('delete-invite', async ( gameroom) => {
+            let deleted =  await inviteController.deleteInvite(gameroom)
+            if (deleted) {
+                let invites = await inviteController.getInvites()
+                socket.emit('invites-list', invites)
+            }
+        })
     })
 }
 

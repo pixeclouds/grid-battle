@@ -62,9 +62,9 @@ const getReceivedPrivateInvite = async (reciever) => {
         throw err
     }
 }
-const deleteInvite = async (id) => {
+const deleteInvite = async (gameroom) => {
     try {
-        return await pool.query(queries.deleteInvite, [id])
+        return await pool.query(queries.deleteInvite, [gameroom])
     } catch (err) {
         throw err
     }
