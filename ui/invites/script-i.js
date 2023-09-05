@@ -12,50 +12,9 @@ document.querySelector('.menu-toggle').addEventListener('click', () => {
 
 // })
 
-const updateInviteUI = (invites) => {     
-    console.log('invite rom server', invites)
 
-    // check if there are any open invites
-    if (invites.length < 1){
-        document.querySelector('.no-invites-message-box').style.display = 'block'
-    } else {
-        let inviteContainer = document.querySelector('.invite-container')
-        inviteContainer.innerHTML = ''
-    
-        // add the updated list of invites to the UI
-        invites.forEach(invite => {
-            let inviteBox = document.createElement('div')
-            inviteBox.classList.add('invite-box')
-    
-            let inviteCreator = document.createElement('div')
-            inviteCreator.classList.add('invite-creator')
-            inviteCreator.textContent = invite.username
-    
-            let joinBtn = document.createElement('button')
-            joinBtn.classList.add('join-btn', `${invite.gameroom}`)
-            joinBtn.textContent = "Join"
-    
-            inviteBox.appendChild(inviteCreator)
-            inviteBox.appendChild(joinBtn)
-            inviteContainer.appendChild(inviteBox)
-            
-        })
-    }
 
-}
 
-document.querySelector('.invite-container').addEventListener('click', e => {
-    if (e.target.classList.contains('join-btn')) {
-
-        // let token = localStorage.getItem('token')
-        let gameroom = e.target.classList[1]
-        localStorage.setItem('gameroom', gameroom)
-        deleteInvite(gameroom)
-        window.location.href = '/gameroom'
-        // socket.emit('join-game', (gameroom, token))
-
-    }
-})
 
 // switch to create invite modal
 document.querySelector('.create-invite-btn').addEventListener('click', (e) => {
@@ -99,3 +58,60 @@ document.querySelector('.create-private-invite').addEventListener('click', (e) =
     }
     
 })
+
+
+const updateInviteUI = (invites) => {     
+
+    console.log('invies', invites)
+
+    // check if there are any open invites
+    if (invites.length < 1){
+        document.querySelector('.no-invites-message-box').style.display = 'block'
+    } else {
+        let inviteContainer = document.querySelector('.invite-container')
+        inviteContainer.innerHTML = ''
+    
+        // add the updated list of invites to the UI
+        invites.forEach(invite => {
+            let inviteBox = document.createElement('div')
+            inviteBox.classList.add('invite-box')
+    
+            let inviteCreator = document.createElement('div')
+            inviteCreator.classList.add('invite-creator')
+            inviteCreator.textContent = invite.username
+    
+            let joinBtn = document.createElement('button')
+            joinBtn.classList.add('join-btn', `${invite.gameroom}`)
+            joinBtn.textContent = "Join"
+    
+            inviteBox.appendChild(inviteCreator)
+            inviteBox.appendChild(joinBtn)
+            inviteContainer.appendChild(inviteBox)
+            
+        })
+    }
+
+}
+
+document.querySelector('.invite-container').addEventListener('click', e => {
+    if (e.target.classList.contains('join-btn')) {
+
+        let gameroom = e.target.classList[1]
+        let gameData = { 
+            gameroom: gameroom, 
+            type: 'public'
+            
+        }
+
+        localStorage.setItem('gameData', JSON.stringify(gameData))
+        let token = localStorage.getItem('token')
+        updateInvite(gameroom, token)
+        window.location.href = '/gameroom'
+        // socket.emit('join-game', (gameroom, token))
+
+    }
+})
+
+const showJoinError = (err) => {
+    window.alert(err)
+}

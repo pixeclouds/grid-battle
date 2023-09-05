@@ -9,8 +9,13 @@ socket.on('invite-created', data => {
     window.alert(data)
     socket.emit('get-invites')
 })
+
 socket.on('invites-list', invites => {
     updateInviteUI(invites)
+})
+
+socket.on('invite-non-existent', err => {
+    showJoinError(err)
 })
 
 function createPublicInvite(invite) {
@@ -21,8 +26,8 @@ function createPrivateInvite(invite) {
     socket.emit('create-private-invite', invite)
 }
 
-function deleteInvite (gameroom) {
-    socket.emit('delete-invite', gameroom)
+function updateInvite (gameroom, token) {
+    socket.emit('update-invite', gameroom, token)
 }
 
 

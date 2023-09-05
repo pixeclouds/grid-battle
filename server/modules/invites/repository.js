@@ -1,9 +1,9 @@
 const { pool } = require('../../config/db')
 const queries = require('./queries')
 
-const createInvite = async (id, playerId, gameroom) => {
+const createInvite = async (id, playerId, gameroom, joined = 'false') => {
     try {
-        await pool.query(queries.createInvite, [id, playerId, gameroom])
+        await pool.query(queries.createInvite, [id, playerId, gameroom, joined])
         return
     } catch (err) {
         throw err
@@ -12,7 +12,7 @@ const createInvite = async (id, playerId, gameroom) => {
 
 const createPrivateInvite = async (id, sender, receiver, gameroom) => {
     try {
-        await pool.query(queries.createPrivateInvite, [id, sender, receiver, gameroom])
+        await pool.query(queries.createPrivateInvite, [id, sender, receiver, gameroom, 'false'])
         return
     } catch (err) {
         throw err
@@ -29,7 +29,7 @@ const getPrivateInvite = async (sender, receiver) => {
 
 const getInvites = async (playerId) => {
     try {
-        let invites = await pool.query(queries.getInvites, [playerId])
+        let invites = await pool.query(queries.getInvites, [playerId, 'false'])
         return invites.rows
     } catch (err) {
         throw err
@@ -70,6 +70,49 @@ const deleteInvite = async (gameroom) => {
     }
 }
 
+const deletePrivateInvite = async (gameroom) => {
+    try {
+        return await pool.query(queries.deletePrivateInvite, [gameroom])
+    } catch (err) {
+        throw err
+    }
+}
+
+const updateInvite = async (gameroom) => {
+    try {
+        await pool.query(queries.updateInvite, ['true', gameroom])
+    } catch (err) {
+        throw err
+    }
+}
+
+const updatePrivateInvite = async (gameroom) => {
+    try {
+        return await pool.query(queries.deleteInvite, [gameroom])
+    } catch (err) {
+        throw err
+    }
+}
+
+
+
+const getPublicGame = async (gameroom) => {
+    try {
+        let invite =  await pool.query(queries.getPublicGame, [gameroom])
+        return invite.rows
+    } catch (err) {
+        throw err
+    }
+}
+
+const getPrivateGame = async (gameroom) => {
+    try {
+        return await pool.query(queries.getPrivateGame, [gameroom])
+    } catch (err) {
+        throw err
+    }
+}
+
 module.exports = {
     getInvite,
     getInvites,
@@ -77,6 +120,11 @@ module.exports = {
     createInvite,
     createPrivateInvite,
     deleteInvite,
+    deletePrivateInvite,
     getSentPrivateInvite,
     getReceivedPrivateInvite,
+    getPrivateGame,
+    getPublicGame,
+    updateInvite,
+    updatePrivateInvite,
 }

@@ -139,6 +139,9 @@ footer {
 .notification-button.decline {
     background-color: #d44d4d; /* Slightly muted red color */
 }
+.notification-button.joined {
+    background-color: #e7aa25f8;
+}
 
 
 

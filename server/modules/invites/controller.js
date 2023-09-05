@@ -61,6 +61,7 @@ const getInvites = async (token) => {
         let invites = await Repo.getInvites(playerId)
         return invites
     } catch (err) {
+        console.log(err)
         return err.message
     }
 }
@@ -75,10 +76,35 @@ const deleteInvite = async (gameroom) => {
     }
 }
 
+const updateInvite = async (gameroom) => {
+    try {
+        await Repo.updateInvite(gameroom)
+        return true
+    } catch (err) {
+        console.log(err.message)
+        return false
+        
+    }
+}
+
+const updatePrivateInvite = async (gameroom) => {
+    try {
+        await Repo.updatePrivateInvite(gameroom)
+        return true
+    } catch (err) {
+        return false
+        
+    }
+}
+
+
+
 
 module.exports = {
     createPublicInvite,
     createPrivateInvite,
     getInvites,
     deleteInvite,
+    updateInvite,
+    updatePrivateInvite,
 }

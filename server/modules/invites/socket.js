@@ -25,12 +25,16 @@ const inviteNameSpace =  (io) => {
             socket.emit('invites-list', invites)
         })
 
-        // delete invite that was just joined by a player
-        socket.on('delete-invite', async (gameroom, token) => {
-            let deleted =  await inviteController.deleteInvite(gameroom)
-            if (deleted) {
+        // delete invite that was just joined by a player 
+        // if there is a network delay and the invite has previously been joined by 
+        // another player, the err message is emiited
+        socket.on('update-invite', async (gameroom, token) => {
+            let updated =  await inviteController.updateInvite(gameroom)
+            if (updated) {
                 let invites = await inviteController.getInvites(token)
                 socket.emit('invites-list', invites)
+            } else {
+                socket.emit('invite-non-existent', 'Invite is closed. Refresh the page pls')
             }
         })
     })

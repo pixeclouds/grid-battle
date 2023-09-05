@@ -16,6 +16,7 @@ const getNotification = async (token) => {
             let invite = {
                 id: pinvite.id,
                 gameroom: pinvite.gameroom,
+                joined: pinvite.joined,
                 type: 'public'
             }
             notification.push(invite)
@@ -25,7 +26,8 @@ const getNotification = async (token) => {
             let invite = {
                 id: pinvite.id,
                 gameroom: pinvite.gameroom,
-                invitee: pinvite.invitee,
+                sender: pinvite.sender,
+                joined: pinvite.joined,
                 type: 'received'
             }
             notification.push(invite)
@@ -35,9 +37,11 @@ const getNotification = async (token) => {
             let invite = {
                 id: pinvite.id,
                 gameroom: pinvite.gameroom,
-                invited: pinvite.invited,
+                receiver: pinvite.receiver,
+                joined: pinvite.joined,
                 type: 'sent'
             }
+            console.log(pinvite)
             notification.push(invite)
         })
 
@@ -48,7 +52,22 @@ const getNotification = async (token) => {
     }
 }
 
+const deleteNotification = async (gameroom, type) => {
+    try {
+        if (type == 'public') {
+            await inviteRepo.deleteInvite(gameroom)
+            return true
+        } else if (type == 'private') {
+            await inviteRepo.deletePrivateInvite(gameroom)
+            return true
+        }
+    } catch (err) {
+        console.log(err.message)
+        return false
+    }
+}
 
 module.exports = {
-    getNotification
+    getNotification,
+    deleteNotification
 }

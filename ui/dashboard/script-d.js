@@ -5,11 +5,13 @@ function updateNotiticationUI(notifications) {
 
     if (notifications.length == 0) {
         // display no notifications message
-        document.querySelector('no-invites-message-box').style.display = 'block'
+        document.querySelector('.no-invites-message-box').style.display = 'block'
     } else {
         notificationDiv.innerHTML = ''
         notifications.forEach(notification => {
             if (notification.type == 'public') {
+                // console.log(notification)
+
                 let notifBox =  document.createElement('div')
                 notifBox.classList.add('notification-box', 'public-created')
 
@@ -21,8 +23,20 @@ function updateNotiticationUI(notifications) {
                 actionDiv.classList.add('notification-actions')
 
                 let btn = document.createElement('button')
-                btn.classList.add('notification-button', 'decline')
-                btn.innerText = 'Delete'
+                btn.classList.add('notification-button', 'decline', `${notification.type}`, `${notification.gameroom}`)
+
+                if (notification.joined == 'true') {
+
+                    btn.innerText = 'Joined'
+                    btn.classList[1] = 'joined'
+                    classes = btn.className.split(' ')
+                    classes[1] = 'joined'
+                    btn.className = classes.join(' ')
+
+                } else {
+                    btn.innerText = 'Delete'
+                    
+                }
 
                 actionDiv.appendChild(btn)
                 notifBox.appendChild(notifText)
@@ -31,19 +45,33 @@ function updateNotiticationUI(notifications) {
                 notificationDiv.appendChild(notifBox)
 
             } else if (notification.type == 'sent') {
+                // console.log(notification)
+
                 let notifBox =  document.createElement('div')
                 notifBox.classList.add('notification-box', 'private-sent')
 
                 let notifText = document.createElement('p')
                 notifText.classList.add('notification-text')
-                notifText.innerText = `Sent a private invite to ${notification.invited}`
+                notifText.innerText = `Sent a private invite to ${notification.receiver}`
 
                 let actionDiv = document.createElement('div')
                 actionDiv.classList.add('notification-actions')
 
                 let btn = document.createElement('button')
-                btn.classList.add('notification-button', 'decline')
-                btn.innerText = 'Cancel'
+                btn.classList.add('notification-button', 'decline',`${notification.type}`, `${notification.gameroom}`)
+
+                if (notification.joined == 'true') {
+                    
+                    btn.innerText = 'Joined'
+                    btn.classList[1] = 'joined'
+                    classes = btn.className.split(' ')
+                    classes[1] = 'joined'
+                    btn.className = classes.join(' ')
+
+                } else {
+                    btn.innerText = 'Cancel'
+                    
+                }
 
                 actionDiv.appendChild(btn)
                 notifBox.appendChild(notifText)
@@ -57,17 +85,17 @@ function updateNotiticationUI(notifications) {
 
                 let notifText = document.createElement('p')
                 notifText.classList.add('notification-text')
-                notifText.innerText = `Private invite from ${notification.invitee}`
+                notifText.innerText = `Private invite from ${notification.sender}`
 
                 let actionDiv = document.createElement('div')
                 actionDiv.classList.add('notification-actions')
 
                 let btn1 = document.createElement('button')
-                btn1.classList.add('notification-button', 'accept')
+                btn1.classList.add('notification-button', 'accept', `${notification.type}`, `${notification.gameroom}`)
                 btn1.innerText = 'Accept'
 
                 let btn2 = document.createElement('button')
-                btn2.classList.add('notification-button', 'decline')
+                btn2.classList.add('notification-button', 'decline', `${notification.type}`, `${notification.gameroom}`)
                 btn2.innerText = 'Decline'
 
                 actionDiv.appendChild(btn1)
@@ -82,3 +110,30 @@ function updateNotiticationUI(notifications) {
     }
 
 }
+
+window.onload = () => {
+    console.log('page wokring')
+}
+
+document.querySelector('.notifications-section').addEventListener('click', e => {
+    e.preventDefault()
+    if (e.target.classList.contains('joined')) {
+        
+        let gameroom = e.target.classList[3]
+        let type = e.target.classList[2]
+        type = (type == 'public') ? 'public': 'private'
+
+        let gameData = { 
+            gameroom,
+            type 
+        }
+
+        localStorage.setItem('gameData', JSON.stringify(gameData))
+        // let token = localStorage.getItem('token')
+        // updateInvite(gameroom, token)
+        window.location.href = '/gameroom'
+
+    }
+
+
+})

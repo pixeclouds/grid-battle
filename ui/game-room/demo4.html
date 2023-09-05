@@ -57,14 +57,24 @@
     justify-content: space-evenly;
     margin-top: 10px;
   }
+  .player {
+    box-shadow: 6px 8px 8px rgba(221, 176, 27, 0.8);
+    border-radius: 4px;
+    padding: 5px 6px;
+  }
+  .player-active {
+    box-shadow: 6px 8px 8px rgba(31, 236, 41, 0.8);
+    border-radius: 4px;
+    padding: 5px 6px;
+  }
 </style>
 <title>Grid Duel</title>
 </head>
 <body>
   <h1>Game Board</h1>
   <div class="player-scores">
-    <div>Player X: <span id="x-score">0</span></div>
-    <div>Player Y: <span id="y-score">0</span></div>
+    <div class="player base player-x">Player-X:<span id="x-score">0</span></div>
+    <div class="player base player-y">Player-Y:<span id="y-score">0</span></div>
   </div>
    <p>Next move: <span id="currentPlayer">X</span></p>
   <div class="board" id="board">
@@ -81,7 +91,9 @@
   <p id="winMessage" style="display: none;"></p>
   <p>Rounds: <span id="rounds">0</span></p>
   <button class="reset btn" onclick="resetGameState(this)">Reset</button>
-  <button class="end-game btn" onclick="endGame()">End Game</button>
+  <button class="end-game btn" onclick="endGame(this)">End Game</button>
+  <script src="socket-g.js"></script>
   <script src="script-g.js"></script>
+
 </body>
 </html>

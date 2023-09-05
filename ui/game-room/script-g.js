@@ -1,63 +1,77 @@
 
-let socket = io('/game-room')
 let XScore = 0
 let YScore = 0
 
-let selectedCell = null;
-let currentPlayer = 'X';
+/*
+Initialized myDevice to manage player device. 
+It prevent a player from playing the other player's move
+*/
+let myDevice 
+
+let selectedCell = null
+let currentPlayer = 'X'
+
 //initial game state
 let state = {
   'one':'X', 'two': 'X', 'three': 'X', 
   'four': '', 'five': '', 'six': '',
   'seven': 'Y', 'eight': 'Y', 'nine': 'Y',
-};
-socket.on('connect', () => {
-    let roomId = '123487'
-    let token = localStorage.getItem('token')
-    socket.emit('joinRoom', roomId, token)
-})
+}
 
-socket.on('roomJoined', data => {
-    console.log(data)
-})
-socket.on('joinError', err => {
-    console.log(err)
-})
-socket.on('inroom', room => {
-    console.log(` you in room ${room}`)
-})
 
-socket.on('g-move', (data)=> {
-  state = data.state
-  currentPlayer = data.currentPlayer
-  
-  updateGameState(state)
-  updateCurrentPlayer(currentPlayer)
-  checkWin()
-})
+
+function playerJoined (game) {
+    let playerX = document.querySelector('.player-x')
+    let playerY = document.querySelector('.player-y')
+
+     /* invite creator takes the first move (X), the code below therefore
+        assign a corresponding value to myDevice. it also shows if a player has joined
+        the game room by changing the shadow around his name from yellow to green 
+     */ 
+    if (game.playerX != '') {
+        if (myDevice == undefined){
+            myDevice = 'X'
+        }
+        playerX.firstChild.textContent = `${game.playerX} (X): `
+        playerX.classList.remove('player')
+        playerX.classList.add('player-active')
+    }
+    if (game.playerY != '')  {
+        if (myDevice == undefined){
+            myDevice = 'Y'
+        }
+        playerY.firstChild.textContent = `${game.playerY} (Y): `
+        playerY.classList.remove('player')
+        playerY.classList.add('player-active')
+
+    }
+}
+
 
 
 // player moves implementation
 function selectCell(cell) {
-  if (!selectedCell) {
-    if (cell.textContent !== "" && cell.textContent === currentPlayer) {
-      selectedCell = cell;
+   
+    if (currentPlayer == myDevice) {
+        if (!selectedCell) {
+            if (cell.textContent !== "" && cell.textContent === currentPlayer) {
+              selectedCell = cell;
+            }
+          } else if (cell.textContent === "" && isAdjacent(selectedCell, cell)) {
+            cell.textContent = selectedCell.textContent;
+            selectedCell.textContent = "";
+            selectedCell = null;
+            currentPlayer = (currentPlayer === 'X') ? 'Y' : 'X'
+        
+            updateState()
+        
+            // emit game state to the other player
+            let move = { state, currentPlayer}
+            let gameData = JSON.parse(localStorage.getItem('gameData'))
+            gameMove(gameData, move)
+
+          }
     }
-  } else if (cell.textContent === "" && isAdjacent(selectedCell, cell)) {
-    cell.textContent = selectedCell.textContent;
-    selectedCell.textContent = "";
-    selectedCell = null;
-    currentPlayer = (currentPlayer === 'X') ? 'Y' : 'X';
-
-    // updateCurrentPlayer(currentPlayer)        
-    updateState();
-
-    // emit game state to the other player
-    let data = { state, currentPlayer}
-    socket.emit('move', data)
-    // checkWin();
-
-  }
 }
 
 function isAdjacent(cell1, cell2) {
@@ -130,32 +144,42 @@ function showWinningCells(cells){
   })
 }
 
-//reset game to initial state
-function resetGameState() {
-  socket.emit('reset-game')
-}
 
-socket.on('reset-game', () => {
-  resetGame()
-})
+function resetGame() {
+    currentPlayer = 'X';
+    state = {
+    'one':'X', 'two': 'X', 'three': 'X', 
+    'four': '', 'five': '', 'six': '',
+    'seven': 'Y', 'eight': 'Y', 'nine': 'Y',
+    };
 
-function resetGame(){
-  currentPlayer = 'X';
-  state = {
-  'one':'X', 'two': 'X', 'three': 'X', 
-  'four': '', 'five': '', 'six': '',
-  'seven': 'Y', 'eight': 'Y', 'nine': 'Y',
-};
+    document.querySelectorAll('.cell').forEach(cell => {
+    cell.style.background = ''
+    })
+    document.getElementById('winMessage').style.display = 'none';
 
-document.querySelectorAll('.cell').forEach(cell => {
-  cell.style.background = ''
-})
-document.getElementById('winMessage').style.display = 'none';
-// document.getElementById('x-score').innerText = 0
-// document.getElementById('y-score').innerText = 0
-
-
-updateGameState(state)
-updateCurrentPlayer(currentPlayer)
+    updateGameState(state)
+    updateCurrentPlayer(currentPlayer)
 
 }
+
+function endGame () {
+    let XScore =  document.getElementById('x-score').textContent
+    let YScore =  document.getElementById('y-score').textContent
+    let gameData = JSON.parse(localStorage.getItem('gameData'))
+
+    endTheGame(gameData, XScore, YScore)
+
+}
+
+function gameEnded() {
+    window.alert('Game ended...')
+    localStorage.removeItem('gameData')
+    window.location.href = '/invites'
+}
+
+function gameEndedError() {
+    window.alert('Error. Try again.')
+}
+
+
