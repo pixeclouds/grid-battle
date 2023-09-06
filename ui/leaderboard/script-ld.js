@@ -25,7 +25,7 @@ document.querySelector('.menu-toggle').addEventListener('click', () => {
 
 //     })
 // }
-
+    
 const updateLeaderboardUI = (topScores) => {
 
         let leaderboard = document.querySelector('.leaderboard')

@@ -15,7 +15,6 @@ const getScore = async (playerId) => {
 const getTopScores = async () => {
     try {
         let scores = await Repo.getTopScores()
-        console.log(scores)
         return scores
     
     } catch (err) {
