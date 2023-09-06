@@ -90,9 +90,11 @@ app.get('/dashboard', (req, res) => {
 
 
 
-const port = 3000;
-http.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+const PORT = 3000 
+const HOST = process.env.HOST
+
+http.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
   inviteNameSpace(io)
   gameRoomNameSpace(io)
   dashboardNameSpace(io)

@@ -1,7 +1,7 @@
 
 const Repo = require('./repository')
 
-const getScore = async () => {
+const getScore = async (playerId) => {
     try {
         let scores = await Repo.getScore()
         console.log(scores)
@@ -12,6 +12,20 @@ const getScore = async () => {
     }
 }
 
+const getTopScores = async () => {
+    try {
+        let scores = await Repo.getTopScores()
+        console.log(scores)
+        return scores
+    
+    } catch (err) {
+        console.log(err.message)
+        
+    }
+}
+
+
 module.exports = {
     getScore,
+    getTopScores
 }

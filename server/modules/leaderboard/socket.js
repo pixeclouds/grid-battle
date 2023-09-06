@@ -5,12 +5,10 @@ const leaderboardNameSpace = (io) => {
     nsp.on('connection', (socket) => {
         console.log('user conncted to leaderboard')
 
-        socket.on('get-score', async () => {
-            let scores = await leaderboardController.getScore()
+        socket.on('get-top-scores', async () => {
+            let scores = await leaderboardController.getTopScores()
+            socket.emit('top-scores', scores)
         })
-
-
-
 
     })
 

@@ -30,8 +30,19 @@ const getScore = async () => {
     }
 }
 
+const getTopScores = async () => {
+    try {                   
+        let scores = await pool.query(queries.getTopSCores, [20])
+        return scores.rows
+    } catch (err) {
+        throw err
+        
+    }
+}
+
 module.exports = {
     createScore,
     updateScore,
     getScore,
+    getTopScores
 }
