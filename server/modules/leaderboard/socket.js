@@ -1,13 +1,15 @@
-
+const leaderboardController = require('./controller')
 const leaderboardNameSpace = (io) => {
     nsp = io.of('/leaderboard')
 
     nsp.on('connection', (socket) => {
         console.log('user conncted to leaderboard')
 
-        // socket.on('update-score', async (token, score) => {
-        //     let 
-        // })
+        socket.on('get-score', async () => {
+            let scores = await leaderboardController.getScore()
+        })
+
+
 
 
     })

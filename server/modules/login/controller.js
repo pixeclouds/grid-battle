@@ -1,4 +1,5 @@
 const Repo = require('./repository')
+const leaderboardRepo = require('../leaderboard/repository')
 const Token = require('../../utils/token')
 const { v4 } = require('uuid')
 
@@ -34,6 +35,11 @@ const createPlayer = async (req, res) => {
         // save new player to db
         await Repo.createPlayer(id, username, password)
         user = await Repo.getPlayer(username)
+
+        // create a record on the leaderboard
+        let scoreId = v4()
+        await leaderboardRepo.createScore(scoreId, user[0].id)
+
 
         // generate token
         let tokenData = { playerId: user[0].id, username: user[0].username}
