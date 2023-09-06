@@ -37,6 +37,8 @@ const userRouter = require('./modules/login/router')
 const inviteNameSpace = require('./modules/invites/socket')
 const gameRoomNameSpace = require('./modules/game-room/socket')
 const dashboardNameSpace = require('./modules/dashboard/socket')
+const leaderboardNameSpace = require('./modules/leaderboard/socket')
+
 
 // const gameRoomSpace = require('./nsp')
 
@@ -50,9 +52,9 @@ app.use('/api',userRouter)
 app.use(express.static(path.join(__dirname, '../ui/home')));
 app.use(express.static(path.join(__dirname, '../ui/login')));
 app.use(express.static(path.join(__dirname, '../ui/dashboard')));
+app.use(express.static(path.join(__dirname, '../ui/leaderboard')));
 app.use(express.static(path.join(__dirname, '../ui/invites')));
 app.use(express.static(path.join(__dirname, '../ui/game-room')));
-app.use(express.static(path.join(__dirname, '../ui/leaderboard')));
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../ui/home/index.html'));
@@ -66,12 +68,13 @@ app.get('/dashboard', (req, res) => {
   res.sendFile(path.join(__dirname, '../ui/dashboard/index.html'));
 });
 
-app.get('/invites', (req, res) => {
-  res.sendFile(path.join(__dirname, '../ui/invites/index.html'));
-});
-
 app.get('/leaderboard', (req, res) => {
   res.sendFile(path.join(__dirname, '../ui/leaderboard/index.html'));
+});
+
+
+app.get('/invites', (req, res) => {
+  res.sendFile(path.join(__dirname, '../ui/invites/index.html'));
 });
 
 app.get('/gameroom', (req, res) => {
@@ -93,6 +96,7 @@ http.listen(port, () => {
   inviteNameSpace(io)
   gameRoomNameSpace(io)
   dashboardNameSpace(io)
+  leaderboardNameSpace(io)
 });
 
 

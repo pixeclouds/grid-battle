@@ -59,13 +59,14 @@ const startGame = async (token, gameData) => {
     }
 }
 
-const endGame = async (gameData, XScore, YScore) => {
+const endGame = async (gameData, playerX, XScore, playerY, YScore) => {
     try {
         if (gameData.type == 'public') {
             await inviteRepo.deleteInvite(gameData.gameroom)
         } else if (gameData.type == 'private') {
             await inviteRepo.deletePrivateInvite(gameData.gameroom)
         }
+        console.log('game adate end', playerX, playerY)
 
         // update players scores
 

@@ -35,6 +35,7 @@ function playerJoined (game) {
         playerX.firstChild.textContent = `${game.playerX} (X): `
         playerX.classList.remove('player')
         playerX.classList.add('player-active')
+        localStorage.setItem('playerX', game.playerX)
     }
     if (game.playerY != '')  {
         if (myDevice == undefined){
@@ -43,6 +44,7 @@ function playerJoined (game) {
         playerY.firstChild.textContent = `${game.playerY} (Y): `
         playerY.classList.remove('player')
         playerY.classList.add('player-active')
+        localStorage.setItem('playerY', game.playerY)
 
     }
 }
@@ -164,11 +166,14 @@ function resetGame() {
 }
 
 function endGame () {
+    // let playerX = document.querySelector('.player-x').firstChild.textContent
     let XScore =  document.getElementById('x-score').textContent
     let YScore =  document.getElementById('y-score').textContent
     let gameData = JSON.parse(localStorage.getItem('gameData'))
+    let playerX = localStorage.getItem('playerX')
+    let playerY = localStorage.getItem('playerY')
 
-    endTheGame(gameData, XScore, YScore)
+    endTheGame(gameData, playerX, XScore, playerY, YScore)
 
 }
 

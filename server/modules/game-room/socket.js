@@ -7,9 +7,14 @@ const gameRoomNameSpace = (io) => {
         console.log('new user connected to gameroom')
 
         socket.on('start-game', async (token, gameData) => {
-            let game = await gameController.startGame(token, gameData)
-            socket.join(game.gameroom)
-            nsp.to(game.gameroom).emit('starting-game', game)
+            try {
+                let game = await gameController.startGame(token, gameData)
+                socket.join(game.gameroom)
+                nsp.to(game.gameroom).emit('starting-game', game)
+            } catch (err) {
+                console.log(err.message)
+            }
+
         })
 
 

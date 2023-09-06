@@ -7,7 +7,8 @@ socket.on('connect', () => {
 
 socket.on('invite-created', data => {
     window.alert(data)
-    socket.emit('get-invites')
+    let token = localStorage.getItem('token')
+    socket.emit('get-invites', token)
 })
 
 socket.on('invites-list', invites => {

@@ -62,8 +62,6 @@ document.querySelector('.create-private-invite').addEventListener('click', (e) =
 
 const updateInviteUI = (invites) => {     
 
-    console.log('invies', invites)
-
     // check if there are any open invites
     if (invites.length < 1){
         document.querySelector('.no-invites-message-box').style.display = 'block'
