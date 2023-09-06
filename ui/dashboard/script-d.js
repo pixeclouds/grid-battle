@@ -1,4 +1,7 @@
 
+document.querySelector('.menu-toggle').addEventListener('click', () => {
+    document.querySelector('nav').classList.toggle('active');
+});
 
 function updateNotiticationUI(notifications) {
     let notificationDiv = document.querySelector('.notifications-section')
