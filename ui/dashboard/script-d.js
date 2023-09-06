@@ -4,7 +4,9 @@ document.querySelector('.menu-toggle').addEventListener('click', () => {
 });
 
 function updateNotiticationUI(notifications) {
-    let notificationDiv = document.querySelector('.notifications-section')
+    let notificationDiv = document.querySelector('.notifications')
+    notificationDiv.innerHTML = ''
+
 
     if (notifications.length == 0) {
         // display no notifications message
@@ -114,10 +116,7 @@ function updateNotiticationUI(notifications) {
 
 }
 
-window.onload = () => {
-    console.log('page wokring')
-}
-
+// join the game room of an invite you created
 document.querySelector('.notifications-section').addEventListener('click', e => {
     e.preventDefault()
     if (e.target.classList.contains('joined')) {
@@ -137,6 +136,18 @@ document.querySelector('.notifications-section').addEventListener('click', e => 
         window.location.href = '/gameroom'
 
     }
+
+    if (e.target.classList.contains('decline')) {
+        
+        let gameroom = e.target.classList[3]
+        let type = e.target.classList[2]
+        type = (type == 'public') ? 'public': 'private'
+
+        let token = localStorage.getItem('token')
+        deleteInvite(token, gameroom, type)
+
+    }
+
 
 
 })

@@ -2,7 +2,6 @@ const inviteRepo = require('../invites/repository')
 const Token = require('../../utils/token')
 
 
-
 const getNotification = async (token) => {
     try {
         let { playerId } = await Token.verifyToken(token)
@@ -41,7 +40,6 @@ const getNotification = async (token) => {
                 joined: pinvite.joined,
                 type: 'sent'
             }
-            console.log(pinvite)
             notification.push(invite)
         })
 
@@ -69,5 +67,5 @@ const deleteNotification = async (gameroom, type) => {
 
 module.exports = {
     getNotification,
-    deleteNotification
+    deleteNotification,
 }

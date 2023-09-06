@@ -14,13 +14,13 @@ const dashboardNameSpace = (io) => {
             socket.emit('notifications', notifications)
         })
 
-        socket.on('delete-notification', async (gameroom, type) => {
+        socket.on('delete-invite', async (token, gameroom, type) => {
             let deleted = await dashboardController.deleteNotification(gameroom, type)
             if(deleted) {
                 let notifications = await dashboardController.getNotification(token)
                 socket.emit('notifications', notifications)
             } else {
-                socket.emit('delete-notification-error', 'Error')
+                socket.emit('delete-invite-error', 'Error')
             }
         })
 
