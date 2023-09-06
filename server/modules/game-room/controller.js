@@ -1,13 +1,16 @@
 
 const Token = require('../../utils/token')
 const inviteRepo = require('../invites/repository')
+const leaderboardRepo = require('../leaderboard/repository')
 
 // active games store
 const activeGames = {
     // sample structure
     'gameroom': {
         playerX: 'playerX',
-        playerY: 'playerY'
+        playerY: 'playerY',
+        playerXId: 'fkf-rfgf',
+        playerYId: 'djwpe-lfw'
     }
 }
 
@@ -22,7 +25,9 @@ const startGame = async (token, gameData) => {
         if (!activeGames[gameData.gameroom]) {
             activeGames[gameData.gameroom] = {
                 playerX: '',
-                playerY: ''
+                playerY: '',
+                playerXId: '',
+                playerYId: ''
             }
         }
 
@@ -32,8 +37,11 @@ const startGame = async (token, gameData) => {
             let gameDetails = await inviteRepo.getPublicGame(gameroom)
             if (playerId == gameDetails[0].player_id){
                 activeGames[gameroom].playerX = username
+                activeGames[gameroom].playerXId = playerId
             } else {
                 activeGames[gameroom].playerY = username
+                activeGames[gameroom].playerYId = playerId
+
             }
         }
         // check if the game invite is private 
@@ -41,9 +49,13 @@ const startGame = async (token, gameData) => {
             let gameDetails = await inviteRepo.getPrivateGame(gameroom)
             if (playerId == gameDetails[0].player_id){
                 activeGames[gameroom].playerX = username
+                activeGames[gameroom].playerXId = playerId
+
 
             } else {
                 activeGames[gameroom].playerY = username
+                activeGames[gameroom].playerYId = playerId
+
 
             }
         }
@@ -51,7 +63,10 @@ const startGame = async (token, gameData) => {
         return {
             gameroom: gameroom,
             playerX: activeGames[gameroom].playerX,
-            playerY: activeGames[gameroom].playerY
+            playerY: activeGames[gameroom].playerY,
+            playerXId: activeGames[gameroom].playerXId,
+            playerYId: activeGames[gameroom].playerYId
+
         }
       
     } catch (err) {
@@ -59,16 +74,18 @@ const startGame = async (token, gameData) => {
     }
 }
 
-const endGame = async (gameData, playerX, XScore, playerY, YScore) => {
+const endGame = async (gameData,  playerXId, playerYId, XScore, YScore) => {
     try {
         if (gameData.type == 'public') {
             await inviteRepo.deleteInvite(gameData.gameroom)
         } else if (gameData.type == 'private') {
             await inviteRepo.deletePrivateInvite(gameData.gameroom)
         }
-        console.log('game adate end', playerX, playerY)
 
         // update players scores
+        await leaderboardRepo.updateScore(playerXId, XScore)
+        await leaderboardRepo.updateScore(playerYId, YScore)
+
 
         return 'success'
     } catch (err) {

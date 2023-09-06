@@ -35,7 +35,14 @@ function playerJoined (game) {
         playerX.firstChild.textContent = `${game.playerX} (X): `
         playerX.classList.remove('player')
         playerX.classList.add('player-active')
-        localStorage.setItem('playerX', game.playerX)
+
+        let playerids = {
+          playerXId :  game.playerXId,
+          playerYId : game.playerYId
+
+        }
+        localStorage.setItem('playerids', JSON.stringify(playerids))
+
     }
     if (game.playerY != '')  {
         if (myDevice == undefined){
@@ -44,7 +51,14 @@ function playerJoined (game) {
         playerY.firstChild.textContent = `${game.playerY} (Y): `
         playerY.classList.remove('player')
         playerY.classList.add('player-active')
-        localStorage.setItem('playerY', game.playerY)
+
+        let playerids = {
+          playerXId :  game.playerXId,
+          playerYId : game.playerYId
+
+        }
+        localStorage.setItem('playerids', JSON.stringify(playerids))
+
 
     }
 }
@@ -70,6 +84,7 @@ function selectCell(cell) {
             // emit game state to the other player
             let move = { state, currentPlayer}
             let gameData = JSON.parse(localStorage.getItem('gameData'))
+            console.log('game move data', gameData)
             gameMove(gameData, move)
 
           }
@@ -170,10 +185,9 @@ function endGame () {
     let XScore =  document.getElementById('x-score').textContent
     let YScore =  document.getElementById('y-score').textContent
     let gameData = JSON.parse(localStorage.getItem('gameData'))
-    let playerX = localStorage.getItem('playerX')
-    let playerY = localStorage.getItem('playerY')
+    let {playerXId, playerYId } = JSON.parse(localStorage.getItem('playerids'))
 
-    endTheGame(gameData, playerX, XScore, playerY, YScore)
+    endTheGame(gameData,  playerXId, playerYId, XScore, YScore)
 
 }
 

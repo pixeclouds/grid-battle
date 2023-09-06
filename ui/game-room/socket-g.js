@@ -7,8 +7,6 @@ socket.on('connect', () => {
     socket.emit('start-game', token, gameData)
 })
 socket.on('starting-game', game => {
-    // console.log('game data',game)
-    console.log(game)
     playerJoined(game)
 })
 
@@ -42,6 +40,6 @@ function gameMove(gameData, move) {
     socket.emit('move', gameData, move)
 }
 
-function endTheGame (gameData, playerX, XScore, playerY, YScore) {
-    socket.emit('end-game', gameData, playerX, XScore, playerY, YScore)
+function endTheGame (gameData,   playerXId, playerYId, XScore, YScore) {
+    socket.emit('end-game', gameData,  playerXId, playerYId, XScore, YScore)
 }

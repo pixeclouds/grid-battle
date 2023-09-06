@@ -35,8 +35,8 @@ const gameRoomNameSpace = (io) => {
             nsp.emit('reset-game')
         })
 
-        socket.on('end-game', async (gameData, XScore, YScore) => {
-            let ended = await gameController.endGame(gameData, XScore, YScore)
+        socket.on('end-game', async (gameData,  playerXId, playerYId, XScore, YScore) => {
+            let ended = await gameController.endGame(gameData,  playerXId, playerYId, XScore, YScore)
             if (ended == 'success') {
                 nsp.to(gameData.gameroom).emit('game-ended')
             } else {

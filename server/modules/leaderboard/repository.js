@@ -13,7 +13,7 @@ const createScore = async (id, player_id) => {
 
 const updateScore = async (player_id, score) => {
     try {
-        await pool.query(queries.updateScore, [player_id, score])
+        await pool.query(queries.updateScore, [score, player_id])
         return
     } catch (err) {
         throw err
