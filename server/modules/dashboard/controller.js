@@ -65,7 +65,18 @@ const deleteNotification = async (gameroom, type) => {
     }
 }
 
+const acceptPrivateInvite = async (gameroom) => {
+    try {
+        await  inviteRepo.updatePrivateInvite(gameroom)
+        return true
+    } catch (err) {
+        return false
+        
+    }
+}
+
 module.exports = {
     getNotification,
     deleteNotification,
+    acceptPrivateInvite,
 }

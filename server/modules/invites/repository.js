@@ -88,7 +88,7 @@ const updateInvite = async (gameroom) => {
 
 const updatePrivateInvite = async (gameroom) => {
     try {
-        return await pool.query(queries.deleteInvite, [gameroom])
+        return await pool.query(queries.updatePrivateInvite, ['true', gameroom])
     } catch (err) {
         throw err
     }
@@ -107,7 +107,8 @@ const getPublicGame = async (gameroom) => {
 
 const getPrivateGame = async (gameroom) => {
     try {
-        return await pool.query(queries.getPrivateGame, [gameroom])
+        let invite = await pool.query(queries.getPrivateGame, [gameroom])
+        return invite.rows
     } catch (err) {
         throw err
     }

@@ -194,7 +194,7 @@ function endGame () {
 function gameEnded() {
     window.alert('Game ended...')
     localStorage.removeItem('gameData')
-    window.location.href = '/invites'
+    window.location.href = '/leaderboard'
 }
 
 function gameEndedError() {

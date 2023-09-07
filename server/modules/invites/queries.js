@@ -8,7 +8,7 @@ const createPrivateInvite = 'INSERT INTO private_invites (id, sender, receiver, 
 const getPrivateInvite = 'SELECT * FROM private_invites WHERE sender = $1 AND receiver = $2'
 const getSentPrivateInvite = 'SELECT p.username receiver, i.id, i.gameroom, joined FROM private_invites i LEFT JOIN players p on p.id = i.receiver WHERE i.sender = $1'
 const getReceivedPrivateInvite = 'SELECT p.username sender, i.id, i.gameroom, joined FROM private_invites i LEFT JOIN players p on p.id = i.sender WHERE i.receiver = $1'
-const updatePrivateInvite = 'UPDATE private_invites SET joined = false WHERE gameroom = $1'
+const updatePrivateInvite = 'UPDATE private_invites SET joined = $1 WHERE gameroom = $2'
 const deletePrivateInvite = 'DELETE FROM private_invites WHERE gameroom = $1'
 
  

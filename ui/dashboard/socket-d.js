@@ -17,4 +17,7 @@ function deleteInvite(token, gameroom, type) {
     socket.emit('delete-invite', token, gameroom, type)
 }
 
+function updateInvite (gameroom, token) {
+    socket.emit('accept-invite', gameroom, token)
+}
 

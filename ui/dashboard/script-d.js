@@ -148,6 +148,21 @@ document.querySelector('.notifications-section').addEventListener('click', e => 
 
     }
 
+    if (e.target.classList.contains('accept')) {
+
+        let gameroom = e.target.classList[3]
+        let gameData = { 
+            gameroom: gameroom, 
+            type: 'private'
+            
+        }
+
+        localStorage.setItem('gameData', JSON.stringify(gameData))
+        updateInvite(gameroom)
+        window.location.href = '/gameroom'
+
+    }
+
 
 
 })

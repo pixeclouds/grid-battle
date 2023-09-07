@@ -47,7 +47,7 @@ const startGame = async (token, gameData) => {
         // check if the game invite is private 
         else if ( gameData.type == 'private') {
             let gameDetails = await inviteRepo.getPrivateGame(gameroom)
-            if (playerId == gameDetails[0].player_id){
+            if (playerId == gameDetails[0].sender){
                 activeGames[gameroom].playerX = username
                 activeGames[gameroom].playerXId = playerId
 
@@ -58,6 +58,8 @@ const startGame = async (token, gameData) => {
 
 
             }
+
+        
         }
 
         return {
@@ -82,6 +84,9 @@ const endGame = async (gameData,  playerXId, playerYId, XScore, YScore) => {
             await inviteRepo.deletePrivateInvite(gameData.gameroom)
         }
 
+        // remove room from active rooms
+        delete activeGames[gameData.gameroom]
+
         // update players scores
         await leaderboardRepo.updateScore(playerXId, XScore)
         await leaderboardRepo.updateScore(playerYId, YScore)
@@ -100,51 +105,7 @@ const endGame = async (gameData,  playerXId, playerYId, XScore, YScore) => {
 
 
 
-// const activeRooms = { 
-//     'sampleroomId' : ['player1 Id', 'player2 Id']
-// }
-
-// const joinGame = async (socket, roomId, token) => {
-//     try {
-//         let { playerId } = await Token.verifyToken(token)
-
-//         for (room in activeRooms ) {
-//             // check if player is in an active game
-//             if (activeRooms[room].includes(playerId)) {
-//                 throw Error ('player still in a game room')
-//             }
-            
-//             // check if players n room are not more than 2
-//             if ((room == roomId) && (activeRooms[room].length > 1)) {
-//                 throw Error ('Room is full')
-//             }
-
-//             // add player to active game room
-//             socket.join(roomId)
-
-//             if (roomId in activeRooms) {
-//                 activeRooms[roomId].push(playerId)
-//             } else {
-//                 activeRooms[roomId] = [playerId]
-//             }
-
-//             return {
-//                 roomId, 
-//                 players: activeRooms[roomId],
-//                 type: 'Success'
-//             }
-//         }
-
-//     } catch (err) {
-//         return {
-//             msg: err.message, 
-//             type: 'Error'
-//         }
-//     }
-// }
-
 module.exports = {
-    // joinGame,
     startGame,
     endGame
 }

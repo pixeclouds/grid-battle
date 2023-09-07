@@ -1,4 +1,5 @@
 const dashboardController = require('./controller')
+const inviteController = require('../invites/controller')
 const dashboardNameSpace = (io) => {
     nsp = io.of('/dashboard')
 
@@ -12,6 +13,10 @@ const dashboardNameSpace = (io) => {
         socket.on('get-notifications', async(token) => {
             let notifications = await dashboardController.getNotification(token)
             socket.emit('notifications', notifications)
+        })
+
+        socket.on('accept-invite', async (gameroom) => {
+            await dashboardController.acceptPrivateInvite(gameroom)
         })
 
         socket.on('delete-invite', async (token, gameroom, type) => {

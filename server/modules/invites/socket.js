@@ -25,9 +25,11 @@ const inviteNameSpace =  (io) => {
             socket.emit('invites-list', invites)
         })
 
-        // delete invite that was just joined by a player 
-        // if there is a network delay and the invite has previously been joined by 
-        // another player, the err message is emiited
+        /* 
+          delete invite that was just joined by a player 
+          if there is a network delay and the invite has previously been joined by 
+          another player, the err message is emitted 
+        */
         socket.on('update-invite', async (gameroom, token) => {
             let updated =  await inviteController.updateInvite(gameroom)
             if (updated) {

@@ -105,7 +105,6 @@ document.querySelector('.invite-container').addEventListener('click', e => {
         let token = localStorage.getItem('token')
         updateInvite(gameroom, token)
         window.location.href = '/gameroom'
-        // socket.emit('join-game', (gameroom, token))
 
     }
 })
