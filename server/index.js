@@ -37,7 +37,8 @@ const userRouter = require('./modules/login/router')
 const inviteNameSpace = require('./modules/invites/socket')
 const gameRoomNameSpace = require('./modules/game-room/socket')
 const dashboardNameSpace = require('./modules/dashboard/socket')
-const leaderboardNameSpace = require('./modules/leaderboard/socket')
+const leaderboardNameSpace = require('./modules/leaderboard/socket');
+const { prependOnceListener } = require("process");
 
 
 // const gameRoomSpace = require('./nsp')
@@ -90,7 +91,7 @@ app.get('/dashboard', (req, res) => {
 
 
 
-const PORT = 3000 
+const PORT = process.env.PORT
 const HOST = process.env.HOST
 
 http.listen(PORT, () => {
