@@ -28,10 +28,11 @@ const createPrivateInvite = async (invite) => {
         
         // check if the invite reciver exists
         let receiver = await userRepo.getPlayer(invite.receiver)
-        let receiverId = receiver[0].id
-        if (receiver.length = 0 ) {
-            throw Errror ("incorrect player's name")
+        if (receiver.length == 0 ) {
+            throw Error ("Incorrect player's name")
         }
+
+        let receiverId = receiver[0].id
 
         //check if username is player's own name
         if (receiverId == playerId) {

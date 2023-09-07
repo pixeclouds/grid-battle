@@ -51,11 +51,9 @@ const startGame = async (token, gameData) => {
                 activeGames[gameroom].playerX = username
                 activeGames[gameroom].playerXId = playerId
 
-
             } else {
                 activeGames[gameroom].playerY = username
                 activeGames[gameroom].playerYId = playerId
-
 
             }
 
