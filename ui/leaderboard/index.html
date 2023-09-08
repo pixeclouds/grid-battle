@@ -8,12 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles-ld.css">
     <script src="/socket.io/socket.io.js"></script>
-
-    
 </head>
 <body>
-    <!-- Header (Retained from Landing Page) -->
-    <!-- ... -->
     <header>
         <a class="logo" href="/">Grid Duel</a>
         <div class="menu-toggle">&#9776;</div>
@@ -28,8 +24,7 @@
     </header>
 
     <div class="container">
-    				
-    			<p class="leaderboard-text">
+    	<p class="leaderboard-text">
             Check out the top players. Compete against others and see if you can climb the ranks. Will you be the next champion?
         </p>	
     				
@@ -45,7 +40,7 @@
                 </tr>
             </thead>
             <tbody class="leaderboard">
-                <tr class="rank-1">
+                <!-- <tr class="rank-1">
                     <td>1</td>
                     <td>Player 1</td>
                     <td>1000 pts</td>
@@ -55,51 +50,21 @@
                     <td>Player 2</td>
                     <td>850 pts</td>
                 </tr>
-                <tr class="rank-3">
-                    <td>3</td>
-                    <td>Player 3</td>
-                    <td>720 pts</td>
-                </tr>
-                <tr class="rank-3">
-                    <td>4</td>
-                    <td>Player 4</td>
-                    <td>670 pts</td>
-                </tr>
-                <tr class="rank-3">
-                    <td>5</td>
-                    <td>Player 5</td>
-                    <td>620 pts</td>
-                </tr>
-                <tr class="rank-3">
-                    <td>6</td>
-                    <td>Player 6</td>
-                    <td>580 pts</td>
-                </tr>
-                <tr class="rank-4">
-                    <td>7</td>
-                    <td>Player 7</td>
-                    <td>550 pts</td>
-                </tr>
                 <tr class="rank-5">
                     <td>8</td>
                     <td>Player 8</td>
                     <td>500 pts</td>
-                </tr>
-                <!-- ... (Add more leaderboard rows) -->
+                </tr> -->
             </tbody>
         </table>
     </div>
 
-    <!-- Footer (Retained from Landing Page) -->
-    <!-- ... -->
-
     <footer>
         &copy; 2023 Grid Duel Game
     </footer>
-    <script src="script-ld.js"></script>
 
+    <script src="script-ld.js"></script>
     <script src="socket-ld.js"></script>
-    <!-- <script src="script-ld.js"></script> -->
 
 </body>
 </html>
