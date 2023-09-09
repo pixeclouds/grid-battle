@@ -20,11 +20,12 @@ const updateScore = async (player_id, score) => {
     }
 }
 
-const getScore = async () => {
+const getScore = async (username) => {
     try {
-        let scores = await pool.query(queries.getScore)
+        let scores = await pool.query(queries.getScore ,[username])
         return scores.rows
     } catch (err) {
+        console.log(err.message)
         throw err
         
     }
@@ -32,7 +33,7 @@ const getScore = async () => {
 
 const getTopScores = async () => {
     try {                   
-        let scores = await pool.query(queries.getTopSCores, [20])
+        let scores = await pool.query(queries.getTopScores, [20])
         return scores.rows
     } catch (err) {
         throw err

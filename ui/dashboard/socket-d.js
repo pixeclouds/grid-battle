@@ -3,10 +3,15 @@ const socket =  io('/dashboard')
 socket.on('connect', () => {
     let token = localStorage.getItem('token')
     socket.emit('get-notifications', token)  
+    socket.emit('get-highlight', token)
 })
 
 socket.on('notifications', async (notifications) => {
     updateNotiticationUI(notifications)
+})
+
+socket.on('player-highlight', data => {
+    updateHightlight(data)
 })
 
 socket.on('delete-invite-error', err => {

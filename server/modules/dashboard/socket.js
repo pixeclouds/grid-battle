@@ -1,5 +1,4 @@
 const dashboardController = require('./controller')
-const inviteController = require('../invites/controller')
 const dashboardNameSpace = (io) => {
     nsp = io.of('/dashboard')
 
@@ -28,6 +27,11 @@ const dashboardNameSpace = (io) => {
                 socket.emit('delete-invite-error', 'Error')
             }
         })
+
+        socket.on('get-highlight', async(token) => {
+            let highlight = await dashboardController.getHighlight(token)
+            socket.emit('player-highlight', highlight)
+        }) 
 
     })
 }

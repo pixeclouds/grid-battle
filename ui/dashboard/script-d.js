@@ -116,6 +116,16 @@ function updateNotiticationUI(notifications) {
 
 }
 
+// function to update the player's  score and rank
+function updateHightlight(data) {
+    let rank = document.querySelector('.rank')
+    let score = document.querySelector('.score')
+
+    rank.innerText = `Your Rank: ${data[0].rank}`
+    score.innerText = `Total Score: ${data[0].score}`
+
+}
+
 // join the game room of an invite you created
 document.querySelector('.notifications-section').addEventListener('click', e => {
     e.preventDefault()

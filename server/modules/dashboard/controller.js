@@ -1,5 +1,7 @@
 const inviteRepo = require('../invites/repository')
 const Token = require('../../utils/token')
+const dashboardNameSpace = require('./socket')
+const leaderboardRepo = require('../leaderboard/repository')
 
 
 const getNotification = async (token) => {
@@ -75,8 +77,20 @@ const acceptPrivateInvite = async (gameroom) => {
     }
 }
 
+const getHighlight = async (token) => {
+    try {
+        let {username} = await Token.verifyToken(token)
+        let highlight = await leaderboardRepo.getScore(username)
+        return highlight
+    } catch (err) {
+        return 
+        
+    }
+}
+
 module.exports = {
     getNotification,
     deleteNotification,
     acceptPrivateInvite,
+    getHighlight,
 }
