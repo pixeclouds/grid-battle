@@ -25,7 +25,7 @@ pagesRouter.get('/invites', authenticatePlayer(), (req, res) => {
 });
 
 pagesRouter.get('/gameroom', authenticatePlayer(), (req, res) => {
-    res.sendFile(path.join(__dirname, '../../ui/game-room/demo4.html'));
+    res.sendFile(path.join(__dirname, '../../ui/game-room/index.html'));
 });
 
 pagesRouter.get('/dashboard', authenticatePlayer(), (req, res) => {

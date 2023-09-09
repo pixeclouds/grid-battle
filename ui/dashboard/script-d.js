@@ -122,7 +122,7 @@ function updateHightlight(data) {
     let rank = document.querySelector('.rank')
     let score = document.querySelector('.score')
 
-    player.innerText = `${data[0].username}'s Highlight`
+    player.innerText = `${data[0].username}'s highlight`
     rank.innerText = `Your Rank: ${data[0].rank}`
     score.innerText = `Total Points: ${data[0].score}`
 
