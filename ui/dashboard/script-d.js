@@ -118,11 +118,13 @@ function updateNotiticationUI(notifications) {
 
 // function to update the player's  score and rank
 function updateHightlight(data) {
+    let player = document.querySelector('.player')
     let rank = document.querySelector('.rank')
     let score = document.querySelector('.score')
 
+    player.innerText = `${data[0].username}'s Highlight`
     rank.innerText = `Your Rank: ${data[0].rank}`
-    score.innerText = `Total Score: ${data[0].score}`
+    score.innerText = `Total Points: ${data[0].score}`
 
 }
 

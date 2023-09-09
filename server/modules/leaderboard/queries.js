@@ -13,7 +13,7 @@ const getScore = ` WITH highlight AS (SELECT ROW_NUMBER () OVER (ORDER BY s.scor
                                     ORDER BY s.score  DESC)
                                     
                     SELECT 
-                         hg.rank, hg.score
+                         hg.rank, hg.username, hg.score
                     FROM highlight hg
                     WHERE hg.username = $1
                    
