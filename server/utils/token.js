@@ -12,7 +12,6 @@ const verifyToken = async(token) => {
     try {
         jwt.verify(token, SECRET, (err, payload)=> {
             if (err){
-                console.log("token error", err.message)
                 throw Error(err.message)
             }
             user = payload

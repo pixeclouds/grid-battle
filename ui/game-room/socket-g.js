@@ -31,6 +31,10 @@ socket.on('game-ended-error', () => {
     gameEndedError()
 })
 
+socket.on('game-start-error', err => {
+    gameStartError(err)
+}) 
+
 //reset game to initial state
 function resetGameState() {
     socket.emit('reset-game')

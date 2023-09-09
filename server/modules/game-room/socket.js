@@ -12,20 +12,11 @@ const gameRoomNameSpace = (io) => {
                 socket.join(game.gameroom)
                 nsp.to(game.gameroom).emit('starting-game', game)
             } catch (err) {
-                console.log(err.message)
+                socket.emit('game-start-error', 'Join an invite to play the game')
             }
 
         })
 
-
-        // socket.on('joinRoom',  async (roomId, token) => {
-        //     let data = await gameController.joinGame(socket, roomId, token)
-        //     if (data.type == 'Error') {
-        //         socket.emit('joinError', data)
-        //     } else {
-        //         nsp.to(roomId).emit('roomJoined', data)
-        //     }
-        // })
 
 
         socket.on('move', (gameData, data)=> {

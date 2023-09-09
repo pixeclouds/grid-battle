@@ -1,6 +1,4 @@
 
-
-
 let XScore = 0
 let YScore = 0
 
@@ -86,7 +84,6 @@ function selectCell(cell) {
             // emit game state to the other player
             let move = { state, currentPlayer}
             let gameData = JSON.parse(localStorage.getItem('gameData'))
-            console.log('game move data', gameData)
             gameMove(gameData, move)
 
           }
@@ -196,6 +193,7 @@ function endGame () {
 function gameEnded() {
     window.alert('Game ended...')
     localStorage.removeItem('gameData')
+    localStorage.removeItem('playerids')
     window.location.href = '/leaderboard'
 }
 
@@ -203,4 +201,8 @@ function gameEndedError() {
     window.alert('Error. Try again.')
 }
 
+function gameStartError(err) {
+  window.alert(err)
+  window.location.href = '/invites'
+}
 

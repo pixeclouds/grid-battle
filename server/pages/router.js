@@ -16,19 +16,19 @@ pagesRouter.get('/leaderboard', (req, res) => {
 });
 
 // protected routes
-pagesRouter.get('/dashboard', authenticatePlayer, (req, res) => {
+pagesRouter.get('/dashboard', authenticatePlayer(), (req, res) => {
     res.sendFile(path.join(__dirname, '../../ui/dashboard/index.html'));
 });
 
-pagesRouter.get('/invites', authenticatePlayer, (req, res) => {
+pagesRouter.get('/invites', authenticatePlayer(), (req, res) => {
     res.sendFile(path.join(__dirname, '../../ui/invites/index.html'));
 });
 
-pagesRouter.get('/gameroom', authenticatePlayer, (req, res) => {
+pagesRouter.get('/gameroom', authenticatePlayer(), (req, res) => {
     res.sendFile(path.join(__dirname, '../../ui/game-room/demo4.html'));
 });
 
-pagesRouter.get('/dashboard', authenticatePlayer, (req, res) => {
+pagesRouter.get('/dashboard', authenticatePlayer(), (req, res) => {
     res.sendFile(path.join(__dirname, '../../ui/dashboard/index.html'));
 });
 

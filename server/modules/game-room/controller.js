@@ -70,7 +70,7 @@ const startGame = async (token, gameData) => {
         }
       
     } catch (err) {
-        console.log(err.message)
+        throw err
     }
 }
 
@@ -89,8 +89,8 @@ const endGame = async (gameData,  playerXId, playerYId, XScore, YScore) => {
         await leaderboardRepo.updateScore(playerXId, XScore)
         await leaderboardRepo.updateScore(playerYId, YScore)
 
-
         return 'success'
+        
     } catch (err) {
         console.log(err.message)
         return 'Error'
