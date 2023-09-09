@@ -62,7 +62,7 @@ const getInvites = async (token) => {
         let invites = await Repo.getInvites(playerId)
         return invites
     } catch (err) {
-        console.log(err)
+        console.log(err.message)
         return err.message
     }
 }

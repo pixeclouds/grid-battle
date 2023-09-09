@@ -1,5 +1,5 @@
 
-const getTopSCores = `SELECT RANK () OVER (ORDER BY s.score DESC)
+const getTopSCores = `SELECT ROW_NUMBER () OVER (ORDER BY s.score DESC)
                       AS rank, p.username, s.score 
                       FROM scores s
                       JOIN players p on p.id = s.player_id

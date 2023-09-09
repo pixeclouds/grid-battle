@@ -1,19 +1,9 @@
 
 
+
 document.querySelector('.menu-toggle').addEventListener('click', () => {
     document.querySelector('nav').classList.toggle('active');
 });
-
-// document.querySelector('.create-invite-btn').addEventListener('click', (e) => {
-//     e.preventDefault()
-
-//     let token = localStorage.getItem('token')
-//     socket.emit('create-invite', token)
-
-// })
-
-
-
 
 
 // switch to create invite modal

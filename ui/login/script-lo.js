@@ -24,7 +24,7 @@ loginForm.addEventListener("submit", async (event) => {
     const errorMessage = errorMessages[0]
     
     try {
-        const response = await fetch("/api/login", {
+        const response = await fetch("/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -44,7 +44,7 @@ loginForm.addEventListener("submit", async (event) => {
             errorMessage.style.display = "block";
         }
     } catch (error) {
-        console.error("An error occurred:", error);
+        console.error("An error occurred");
     }
 });
 
@@ -58,7 +58,7 @@ signupForm.addEventListener("submit", async (event) => {
     const errorMessage = errorMessages[1]
     
     try {
-        const response = await fetch("/api/signup", {
+        const response = await fetch("/signup", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

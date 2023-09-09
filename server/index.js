@@ -1,8 +1,8 @@
 require("dotenv").config()
 const express = require('express');
-const path = require('path');
 const app = express();
-
+const path = require('path');
+const session = require('express-session')
 const http = require('http').Server(app)
 const io = require('socket.io')(http)
 
@@ -16,12 +16,18 @@ const gameRoomNameSpace = require('./modules/game-room/socket')
 const dashboardNameSpace = require('./modules/dashboard/socket')
 const leaderboardNameSpace = require('./modules/leaderboard/socket');
 
+app.use(session({
+  secret: process.env.JWT_SECRET,
+  resave: false,
+  saveUninitialized: true
+}))
 
 // pool.connect()
 
 app.use(express.json())
 
-app.use('/api',userRouter)
+app.use(userRouter)
+
 
 // Serve static files (CSS, JS)
 app.use(express.static(path.join(__dirname, '../ui/home')));

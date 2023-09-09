@@ -3,7 +3,7 @@ const leaderboardRepo = require('../leaderboard/repository')
 const Token = require('../../utils/token')
 const { v4 } = require('uuid')
 
-const getPlayer = async (req, res) => {
+const login = async (req, res) => {
     try {
         let { username, password } = req.body
         let user = await Repo.getPlayer(username)
@@ -16,13 +16,15 @@ const getPlayer = async (req, res) => {
         // generate token
         let tokenData = { playerId: user[0].id, username: user[0].username}
         let token = await  Token.generateToken(tokenData)
+        req.session.token = token
+
         res.status(200).json({ token: token})
     } catch (err) {
         res.status(401).json({ err: err.message})
     }
 }
 
-const createPlayer = async (req, res) => {
+const signup = async (req, res) => {
     try {
         let { username, password } = req.body
         // check if player exists
@@ -40,10 +42,12 @@ const createPlayer = async (req, res) => {
         let scoreId = v4()
         await leaderboardRepo.createScore(scoreId, user[0].id)
 
-
         // generate token
         let tokenData = { playerId: user[0].id, username: user[0].username}
         let token = await  Token.generateToken(tokenData)
+
+        req.session.token = token
+
         res.status(200).json({ token: token})
     } catch (err) {
         res.status(401).json({ err: err.message})
@@ -51,6 +55,6 @@ const createPlayer = async (req, res) => {
 }
 
 module.exports = {
-    getPlayer,
-    createPlayer
+   login,
+   signup
 }
