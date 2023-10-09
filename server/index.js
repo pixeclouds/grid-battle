@@ -16,16 +16,17 @@ const gameRoomNameSpace = require('./modules/game-room/socket')
 const dashboardNameSpace = require('./modules/dashboard/socket')
 const leaderboardNameSpace = require('./modules/leaderboard/socket');
 
+// session middleware
 app.use(session({
   secret: process.env.JWT_SECRET,
   resave: false,
   saveUninitialized: true
 }))
 
+// database connection
 // pool.connect()
 
 app.use(express.json())
-
 app.use(userRouter)
 
 
@@ -37,6 +38,7 @@ app.use(express.static(path.join(__dirname, '../ui/leaderboard')));
 app.use(express.static(path.join(__dirname, '../ui/invites')));
 app.use(express.static(path.join(__dirname, '../ui/game-room')));
 
+// pages router
 app.use(pagesRouter)
 
 

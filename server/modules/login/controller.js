@@ -2,6 +2,7 @@ const Repo = require('./repository')
 const leaderboardRepo = require('../leaderboard/repository')
 const Token = require('../../utils/token')
 const { v4 } = require('uuid')
+const Hasher = require('../../utils/hasher')
 
 const login = async (req, res) => {
     try {
@@ -9,7 +10,8 @@ const login = async (req, res) => {
         let user = await Repo.getPlayer(username)
 
         // check if login details are valid
-        if (user.length == 0 || (user[0] && user[0].password != password)) {
+        let hashedPassword = user[0].password
+        if (user.length == 0 || (user[0] && !await Hasher.comparePasswords(password, hashedPassword) )) {
             throw Error ('incorrect details')
         }
 
@@ -34,8 +36,9 @@ const signup = async (req, res) => {
         }
 
         let id = v4()
+        let hashedPassword = await Hasher.hashPassword(password)
         // save new player to db
-        await Repo.createPlayer(id, username, password)
+        await Repo.createPlayer(id, username, hashedPassword)
         user = await Repo.getPlayer(username)
 
         // create a record on the leaderboard
