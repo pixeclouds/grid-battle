@@ -4,14 +4,14 @@ const Token = require('../../utils/token')
 const { v4 } = require('uuid')
 const Hasher = require('../../utils/hasher')
 
+// user login handler
 const login = async (req, res) => {
     try {
         let { username, password } = req.body
         let user = await Repo.getPlayer(username)
 
         // check if login details are valid
-        let hashedPassword = user[0].password
-        if (user.length == 0 || (user[0] && !await Hasher.comparePasswords(password, hashedPassword) )) {
+        if (user.length == 0 || (user[0] && !await Hasher.comparePasswords(password, huser[0].password) )) {
             throw Error ('incorrect details')
         }
 
@@ -26,6 +26,7 @@ const login = async (req, res) => {
     }
 }
 
+// user sign up handler
 const signup = async (req, res) => {
     try {
         let { username, password } = req.body
