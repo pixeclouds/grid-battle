@@ -30,6 +30,13 @@ const login = async (req, res) => {
 const signup = async (req, res) => {
     try {
         let { username, password } = req.body
+        // validate user input
+        if (username.length < 2) {
+            throw Error('username cannot be less than 2 characters')
+        }
+        if (username.length > 11) {
+            throw Error('username must be less than 11 characters')
+        }
         // check if player exists
         let user = await Repo.getPlayer(username)
         if (user.length > 0) {
