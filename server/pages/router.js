@@ -2,7 +2,7 @@ const pagesRouter = require('express').Router()
 const path = require('path');
 const authenticatePlayer = require('../middlewares/auth');
 
-
+// unprotected routes
 pagesRouter.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../../ui/home/index.html'));
 });
