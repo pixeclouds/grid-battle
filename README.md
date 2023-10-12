@@ -31,6 +31,7 @@ Grid Duel is powered by the following technologies:
 - Express.js
 - Socket.io
 - PostgreSQL
+- HTML, CSS & Js
 
 ## Getting Started
 
