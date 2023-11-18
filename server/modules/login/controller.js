@@ -10,8 +10,10 @@ const login = async (req, res) => {
         let { username, password } = req.body
         let user = await Repo.getPlayer(username)
 
+        // console.log(user)
+
         // check if login details are valid
-        if (user.length == 0 || (user[0] && !await Hasher.comparePasswords(password, huser[0].password) )) {
+        if (user.length == 0 || (user[0] && !await Hasher.comparePasswords(password, user[0].password) )) {
             throw Error ('incorrect details')
         }
 
