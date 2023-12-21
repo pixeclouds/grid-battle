@@ -22,6 +22,7 @@ Grid Duel is a project that offers an exciting and strategic gaming experience. 
 ## Demo
 
 You can experience Grid Duel in action by playing the game [here](https://grid-duel-beta.onrender.com).
+#### Note: The game experience is optimized for mobile devices
 
 ## Tech Stack
 
