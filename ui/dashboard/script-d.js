@@ -14,6 +14,7 @@ function updateNotiticationUI(notifications) {
     } else {
         notificationDiv.innerHTML = ''
         notifications.forEach(notification => {
+            console.log(notification)
             if (notification.type == 'public') {
                 // console.log(notification)
 
