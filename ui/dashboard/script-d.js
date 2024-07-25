@@ -4,6 +4,7 @@ document.querySelector('.menu-toggle').addEventListener('click', () => {
 });
 
 function updateNotiticationUI(notifications) {
+    console.log("ALL NOTIIFCtions", notifications)
     let notificationDiv = document.querySelector('.notifications')
     notificationDiv.innerHTML = ''
 
@@ -14,7 +15,7 @@ function updateNotiticationUI(notifications) {
     } else {
         notificationDiv.innerHTML = ''
         notifications.forEach(notification => {
-            console.log(notification)
+            console.log("NOTIFICATION ",notification)
             if (notification.type == 'public') {
                 // console.log(notification)
 
@@ -144,8 +145,8 @@ document.querySelector('.notifications-section').addEventListener('click', e => 
         }
 
         localStorage.setItem('gameData', JSON.stringify(gameData))
-        // let token = localStorage.getItem('token')
-        // updateInvite(gameroom, token)
+        let token = localStorage.getItem('token')
+        updateInvite(gameroom, token)
         window.location.href = '/gameroom'
 
     }

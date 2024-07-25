@@ -45,5 +45,6 @@ function gameMove(gameData, move) {
 }
 
 function endTheGame (gameData,   playerXId, playerYId, XScore, YScore) {
+    console.log(gameData)
     socket.emit('end-game', gameData,  playerXId, playerYId, XScore, YScore)
 }
